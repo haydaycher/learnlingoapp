@@ -1,0 +1,41 @@
+/* TeachersPage.module.css */
+.teachersSection {
+  padding: 2rem;
+}
+
+.teacherList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.teacherCard {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.loadMoreBtn {
+  margin: 2rem auto;
+  display: block;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filters select {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
