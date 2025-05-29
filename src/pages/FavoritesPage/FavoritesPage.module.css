@@ -1,0 +1,27 @@
+.favoritesSection {
+  padding: 2rem;
+}
+
+.teacherList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.teacherCard {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.teacherCard button {
+  margin-top: 1rem;
+  background-color: #ffcccc;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}

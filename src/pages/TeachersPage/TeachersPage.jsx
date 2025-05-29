@@ -10,6 +10,8 @@ const TeachersPage = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedTeacherForTrial, setSelectedTeacherForTrial] = useState(null);
+
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem("favorites");
@@ -122,6 +124,9 @@ const TeachersPage = () => {
             <p>Levels: {teacher.levels.join(", ")}</p>
             <p>Price: ${teacher.price_per_hour}</p>
             <p>Rating: {teacher.rating}⭐</p>
+            <button onClick={() => setSelectedTeacherForTrial(teacher)}>
+              Book trial lesson
+            </button>
 
             <button onClick={() => setSelectedTeacher(teacher)}>
               Read more
@@ -143,12 +148,19 @@ const TeachersPage = () => {
       )}
 
       {/* Модальне вікно */}
-      {selectedTeacher && (
-        <TeacherModal
-          teacher={selectedTeacher}
-          onClose={() => setSelectedTeacher(null)}
-        />
-      )}
+      {selectedTeacher &&
+        ((
+          <TeacherModal
+            teacher={selectedTeacher}
+            onClose={() => setSelectedTeacher(null)}
+          />
+        ),
+        (
+          <TrialLessonModal
+            teacher={selectedTeacherForTrial}
+            onClose={() => setSelectedTeacherForTrial(null)}
+          />
+        ))}
     </section>
   );
 };
