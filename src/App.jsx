@@ -5,7 +5,7 @@ import { SignUpForm } from "./components/SignUpForm/SignUpForm";
 import { LoginForm } from "./components/LoginForm/LoginForm";
 import { Header } from "./components/Header/Header";
 import PrivateRoute from "./routes/PrivateRoute";
-import { HomePage } from "./pages/HomePage/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import TeachersPage from "./pages/TeachersPage/TeachersPage";
 

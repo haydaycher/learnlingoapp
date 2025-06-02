@@ -1,0 +1,83 @@
+/* Базовий стиль для великих екранів */
+.nav_container {
+  display: flex;
+  align-items: center;
+  /* border-bottom: 1px solid #f2f4f7;
+  padding: 24px 64px;
+  width: 100%;
+  max-width: 1440px;
+  height: 72px;
+  background-color: #f7f7f7; */
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 72px;
+}
+
+.nav_list {
+  display: flex;
+  gap: 32px;
+  margin: 0 auto;
+}
+
+.nav_item {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: #101828;
+}
+
+/* .active_link {
+  color: #d84343;
+} */
+
+/* Планшетні пристрої (до 1439px) */
+@media screen and (max-width: 1439px) {
+  .nav_container {
+    padding: 24px 32px;
+    max-width: 768px;
+    height: 64px;
+  }
+
+  .nav_list {
+    gap: 24px;
+  }
+
+  .nav_item {
+    font-size: 15px;
+  }
+}
+
+/* Мобільні пристрої (до 767px) */
+@media screen and (max-width: 768px) {
+  .nav_container {
+    padding: 20px 16px;
+    max-width: 100%;
+    height: 56px;
+  }
+
+  .nav_list {
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .nav_item {
+    font-size: 14px;
+  }
+}
+
+/* Дуже маленькі екрани (до 374px) */
+@media screen and (max-width: 374px) {
+  .nav_container {
+    padding: 20px 10px;
+    height: 50px;
+  }
+
+  .nav_item {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,50 @@
+.home_container {
+  display: flex;
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  width: 100%;
+  background: #f8f8f8;
+  border-radius: 30px;
+  /* width: 720px;
+  height: 530px; */
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: 500;
+  /* font-size: 48px;
+  line-height: 67%;
+  color: var(--inputs); */
+  /* padding: 64px; */
+
+  box-sizing: border-box;
+  position: relative;
+  padding: 32px;
+  /* background-image: url('../../assets/images/homepage-1x-desk.jpg'); */
+}
+.home_main_btn {
+  background: #f4c550;
+  border-radius: 12px;
+  padding: 16px 88px;
+  width: 267px;
+  height: 60px;
+}
+
+.home_title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: #121417;
+}
+
+.highlighted {
+  font-style: italic;
+  font-weight: 400;
+  background-color: #fbe9ba;
+  border-radius: 10px;
+  font-size: 48px;
+  margin-left: 10px;
+}

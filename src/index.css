@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -21,30 +21,68 @@ a {
 a:hover {
   color: #535bf2;
 }
+a svg {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+ul,
+ol {
+  list-style: none; /* прибирає крапки/номери у списку */
+  padding-left: 0; /* опціонально прибирає відступ */
+}
+
+.container {
+  min-width: 320px;
+  max-width: 375px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 30px 0;
+}
 
 body {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  width: fit-content;
+  flex-direction: column;
+  padding: 20px 64px;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #121417;
+}
+p {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
 }
 
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+
+  border-radius: 12px;
+  padding: 16px 215px;
+  width: 472px;
+  height: 60px;
 }
 button:hover {
   border-color: #646cff;
