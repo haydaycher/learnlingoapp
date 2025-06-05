@@ -17,11 +17,11 @@
   height: 72px;
 }
 
-.nav_list {
+/* .nav_list {
   display: flex;
   gap: 32px;
   margin: 0 auto;
-}
+} */
 
 .nav_item {
   font-weight: 500;
@@ -34,6 +34,11 @@
 /* .active_link {
   color: #d84343;
 } */
+@media screen and (max-width: 768px) {
+  .nav_list {
+    display: none;
+  }
+}
 
 /* Планшетні пристрої (до 1439px) */
 @media screen and (max-width: 1439px) {

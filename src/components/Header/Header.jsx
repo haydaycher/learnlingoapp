@@ -5,6 +5,8 @@ import { auth } from "../../firebase/config";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import Navigation from "../Navigation/Navigation.jsx";
 import { LoginForm } from "../LoginForm/LoginForm.jsx";
+import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
+import css from "./Header.module.css";
 
 export const Header = () => {
   const { currentUser } = useAuth();
@@ -14,7 +16,7 @@ export const Header = () => {
   };
 
   return (
-    <header>
+    <section className={css.header}>
       <Logo />
       <Navigation />
 
@@ -24,8 +26,10 @@ export const Header = () => {
           <button onClick={handleLogout}>Logout</button>
         </>
       ) : (
-        <span>Please sign in</span>
+        <div className={css.burgerWrapper}>
+          <BurgerMenu />
+        </div>
       )}
-    </header>
+    </section>
   );
 };
