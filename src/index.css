@@ -11,6 +11,24 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+/*
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.16px;
+  color: #191a15;
+  background: linear-gradient(to right, #fbfbfb, #e5f3ee);
+  margin: 0;
+  min-height: 100vh;
+}*/
+
+html {
+  scroll-behavior: smooth;
+}
 
 * {
   box-sizing: border-box;
