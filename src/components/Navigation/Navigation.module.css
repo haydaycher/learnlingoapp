@@ -17,12 +17,9 @@
   height: 72px;
 }
 
-/* .nav_list {
-  display: flex;
-  gap: 32px;
-  margin: 0 auto;
-} */
-
+.nav_list {
+  display: none;
+}
 .nav_item {
   font-weight: 500;
   font-size: 16px;
@@ -84,5 +81,12 @@
 
   .nav_item {
     font-size: 13px;
+  }
+}
+@media screen and (min-width: 1158px) {
+  .nav_list {
+    display: flex;
+    gap: 32px;
+    margin: 0 auto;
   }
 }

@@ -134,3 +134,9 @@
     transform: translateX(0);
   }
 }
+
+@media screen and (min-width: 1158px) {
+  .navigationBlock {
+    display: none;
+  }
+}
