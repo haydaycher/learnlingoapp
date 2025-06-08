@@ -1,4 +1,3 @@
-// src/components/BurgerMenu/BurgerMenu.jsx
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import css from "./BurgerMenu.module.css";
@@ -9,6 +8,10 @@ export const BurgerMenu = () => {
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
+
+  // Функція для класу NavLink (вона автоматично отримує isActive)
+  const getLinkClass = ({ isActive }) =>
+    isActive ? `${css.link} ${css.active}` : css.link;
 
   return (
     <div className={css.navigationBlock}>
@@ -29,12 +32,16 @@ export const BurgerMenu = () => {
           <div className={css.menuList}>
             <ul>
               <li>
-                <NavLink to="/" onClick={toggleMenu}>
+                <NavLink to="/" onClick={toggleMenu} className={getLinkClass}>
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/teachers" onClick={toggleMenu}>
+                <NavLink
+                  to="/teachers"
+                  onClick={toggleMenu}
+                  className={getLinkClass}
+                >
                   Teachers
                 </NavLink>
               </li>

@@ -8,6 +8,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import HomePage from "./pages/HomePage/HomePage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import TeachersPage from "./pages/TeachersPage/TeachersPage";
+import "./App.css";
 
 export default function App() {
   return (

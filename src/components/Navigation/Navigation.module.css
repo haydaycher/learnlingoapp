@@ -34,7 +34,7 @@
 /* .active_link {
   color: #d84343;
 } */
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .nav_list {
     display: none;
   }

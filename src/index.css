@@ -1,16 +1,29 @@
 :root {
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #121417;
+  background-color: #f3f1f1;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f3f1f1;
 }
 
 a {
@@ -26,35 +39,38 @@ a svg {
   border: none;
   box-shadow: none;
 }
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
 ul,
 ol {
-  list-style: none; /* прибирає крапки/номери у списку */
-  padding-left: 0; /* опціонально прибирає відступ */
+  list-style: none;
+  padding-left: 0;
 }
 
 .container {
-  min-width: 320px;
-  max-width: 375px;
+  width: 100%;
+  margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
-  margin: 0 auto;
 }
 
 .section {
-  padding: 30px 0;
-}
-
-body {
+  width: 100%;
+  max-width: 1158px;
   margin: 0 auto;
-  display: flex;
-  place-items: center;
-  width: fit-content;
-  flex-direction: column;
-  padding: 20px 64px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
 }
 
 h1 {
-  font-family: var(--font-family);
   font-weight: 500;
   font-size: 40px;
   line-height: 120%;
@@ -62,7 +78,6 @@ h1 {
   color: #121417;
 }
 p {
-  font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   line-height: 137%;
@@ -71,14 +86,13 @@ p {
 
 button {
   border: 1px solid transparent;
-
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
-
   border-radius: 12px;
   padding: 16px 215px;
   width: 472px;
@@ -92,15 +106,47 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* 🔧 Адаптивність */
+
+/* Мобільні (до 767px) */
+@media (max-width: 767px) {
+  .container {
+    padding: 0 16px;
   }
-  a:hover {
-    color: #747bff;
-  }
+
   button {
-    background-color: #f9f9f9;
+    width: 100%;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
+
+/* Планшети (768px – 1157px) */
+@media (min-width: 768px) and (max-width: 1157px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+
+  button {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+/* Десктопи (від 1158px) */
+@media (min-width: 1158px) {
+  .container {
+    max-width: 1158px;
+    padding: 0 15px;
+  }
+
+  button {
+    width: 472px;
+    padding: 16px 215px;
   }
 }

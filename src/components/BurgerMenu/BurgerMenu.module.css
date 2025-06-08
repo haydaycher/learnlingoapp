@@ -46,10 +46,35 @@
   position: absolute;
   top: 60px;
   right: 0;
-  /* background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  border-radius: 8px; */
-  z-index: 10;
+  opacity: 0;
+  animation: fadeInMenu 0.3s ease-out forwards;
+  z-index: 20; /* Зверху за menuBackground */
+}
+.menuList li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menuList li a:hover {
+  background-color: #f4f4f4;
+}
+
+/* Абстрактний клас для посилання */
+.link {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Активне посилання */
+.active {
+  color: #f4c550;
+  font-weight: 700;
+  background-color: #fff8dc; /* світлий фон для активного */
+  border-radius: 8px;
 }
 
 .menuList ul {
@@ -69,26 +94,43 @@
 .menuList li a:hover {
   background-color: #f4f4f4;
 }
+.menuList li a,
+.menuList li a:visited,
+.menuList li a:hover,
+.menuList li a:active {
+  text-decoration: none;
+}
 
 .menuBackground {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 500px;
-  height: 500px;
+  right: 0;
+  width: 400px;
+  height: 400px;
   background-color: #f4c550;
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   transform: translate(40%, -30%);
-  z-index: 1;
-  animation: bubblePresent 0.3s ease-out;
+  z-index: 10;
+  animation: bubblePresent 0.3s ease-out forwards;
 }
 
 @keyframes bubblePresent {
   0% {
-    transform: translate(-100%, -100%);
+    transform: translate(100%, -100%);
   }
   100% {
-    transform: translate(-50%, -30%);
+    transform: translate(40%, -30%);
+  }
+}
+
+@keyframes fadeInMenu {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
