@@ -1,4 +1,33 @@
 .header {
   display: flex;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+}
+
+.authButtons {
+  display: flex;
+
+  /* width: 166px;
+  height: 48px; */
+}
+
+.authButtons button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+.authButtonLog {
+  font-size: 16px;
+  line-height: 125%;
+  color: #121417;
+  background: none;
+  border: none;
+}
+.authButtonReg {
+  padding: 14px 39px;
+  border-radius: 12px;
+  background: #121417;
+  color: white;
 }
