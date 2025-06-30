@@ -1,64 +1,73 @@
-.home_container {
+.home_section {
   display: flex;
-  /* background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; */
-  max-width: 100%;
-  overflow-x: hidden;
-  background: #f8f8f8;
-  border-radius: 30px;
-  /* width: 720px;
-  height: 530px; */
-  flex-direction: column;
+  flex-direction: column; /* мобільна версія - вертикально */
   align-items: center;
   justify-content: center;
-  font-family: var(--font-family);
-  font-weight: 500;
-  /* font-size: 48px;
-  line-height: 67%;
-  color: var(--inputs); */
-  /* padding: 64px; */
-
-  box-sizing: border-box;
-  position: relative;
-  padding: 32px;
-  /* background-image: url('../../assets/images/homepage-1x-desk.jpg'); */
+  padding: 20px;
+  gap: 24px;
+  background: #f4f4f4;
+  min-height: auto;
 }
+
+.home_container,
+.imageWrapper {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.imageWrapper {
+  background: #fbe9ba;
+  position: relative;
+  border-radius: 30px;
+  align-items: center;
+}
+
+.hero_img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
 .home_main_btn {
-  position: absolute;
-  top: 99%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: static;
+  margin: 20px auto 0 auto;
+  display: block;
   background: #f4c550;
   border-radius: 12px;
-  padding: 16px 88px;
-  width: 267px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 12px 40px;
   font-weight: 600;
-  font-size: 18px;
-  z-index: 2;
+  font-size: 16px;
   cursor: pointer;
   border: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: auto;
+  transform: none;
+  z-index: auto;
 }
 
 .home_title {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 33px;
+  font-size: 24px;
   line-height: 117%;
   padding: 0;
-  margin: 0;
+  margin-bottom: 16px;
   letter-spacing: -0.02em;
   color: #121417;
   text-align: center;
 }
 
 .home_moto {
-  font-size: 17px;
+  font-size: 14px;
+  text-align: center;
 }
 
 .highlighted {
@@ -66,7 +75,7 @@
   font-weight: 400;
   background-color: #fbe9ba;
   border-radius: 10px;
-  font-size: 33px;
+  font-size: 24px;
   margin-left: 10px;
 }
 
@@ -75,143 +84,143 @@
   border-radius: 30px;
   width: 100%;
   margin-top: 30px;
-  padding: 32px;
+  padding: 20px;
 }
+
 .stats_list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
 }
 
 .stats_list li {
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   color: #121417;
   font-weight: 500;
-  min-width: 200px;
+  min-width: auto;
 }
 
 .home_icon {
   color: #f4c550;
-  font-size: 32px;
+  font-size: 28px;
   margin-right: 12px;
-}
-@media screen and (max-width: 767px) {
-  .hero_img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    display: block;
-    margin: 20px auto 0 auto;
-    border-radius: 20px;
-  }
-
-  .home_main_btn {
-    top: 95%; /* за потреби підкоригуй */
-    padding: 12px 40px;
-    font-size: 16px;
-    width: auto;
-  }
-
-  .home_moto {
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .decorIcon {
-    top: 60px;
-    left: 10px;
-    width: 48px;
-    height: 48px;
-  }
-
-  .additional_info {
-    padding: 20px;
-  }
-
-  .stats_list {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .stats_list li {
-    min-width: auto;
-    font-size: 16px;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1440px) {
-  .stats_list {
-    justify-content: space-between;
-  }
-  .home_title {
-    font-size: 48px;
-  }
-  .highlighted {
-    font-size: 48px;
-  }
-}
-
-/* -------------------- */
-.tablet_image {
-  display: none;
-  margin-top: 20px;
-}
-
-.hero_img {
-  object-fit: cover;
-  /* height: auto; */
-  border-radius: 20px;
-  /* margin-top: 10px; */
-}
-
-@media screen and (min-width: 768px) and (max-width: 1440px) {
-  .tablet_image {
-    display: block;
-  }
-  .home_moto {
-    font-size: 20px;
-  }
-  .hero_img {
-    width: 100%;
-    height: 100%;
-  }
-}
-.imageWrapper {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-}
-.imageWrapper svg {
-  fill: #201717;
-  transform: rotate(-15deg);
 }
 
 .decorIcon {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 40px;
-  /* color: #f4c550; */
-  top: 85px;
-  left: 25px;
-  width: 60px;
-  height: 60px;
+  position: static;
+  margin: 10px auto 0 auto;
+  width: 48px;
+  height: 48px;
+  font-size: 32px;
   border-radius: 10px;
   background-color: #fbc75e;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   opacity: 0.8;
-  z-index: 2;
   pointer-events: none;
 }
-@media screen and (min-width: 1158px) {
-  .home_container {
-    display: flex;
+
+/* Планшети (від 768px і вище) */
+@media screen and (min-width: 768px) {
+  .home_section {
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+  }
+
+  .home_container,
+  .imageWrapper {
+    max-width: 600px;
+    padding: 32px 40px;
+  }
+
+  .home_title {
+    font-size: 28px;
+  }
+
+  .highlighted {
+    font-size: 28px;
+  }
+
+  .home_moto {
+    font-size: 16px;
+  }
+
+  .hero_img {
+    height: 300px;
+  }
+
+  .stats_list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .home_icon {
+    font-size: 32px;
+  }
+}
+
+/* Десктоп (від 1025px і вище) — горизонтально */
+@media screen and (min-width: 1025px) {
+  .home_section {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 40px;
+  }
+
+  .home_container,
+  .imageWrapper {
+    flex: 1 1 50%;
+    max-width: none;
+    padding: 32px 60px;
+  }
+
+  .home_title {
+    font-size: 33px;
+  }
+
+  .highlighted {
+    font-size: 33px;
+  }
+
+  .home_moto {
+    font-size: 17px;
+  }
+
+  .hero_img {
+    height: auto;
+  }
+
+  .home_main_btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 267px;
+    height: 60px;
+    padding: 16px 88px;
+    font-size: 18px;
+    z-index: 2;
+  }
+
+  .decorIcon {
+    position: absolute;
+    top: 85px;
+    left: 25px;
+    width: 60px;
+    height: 60px;
+    font-size: 40px;
+  }
+
+  .stats_list {
+    justify-content: center;
   }
 }

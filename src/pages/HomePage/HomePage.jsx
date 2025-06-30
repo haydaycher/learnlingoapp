@@ -3,43 +3,39 @@ import { FaUsers, FaStar, FaBook, FaGlobe, FaLanguage } from "react-icons/fa";
 import { Header } from "../../components/Header/Header";
 import css from "./HomePage.module.css";
 import { Link } from "react-router-dom";
-import back1x from "../../assets/back1x.webp";
-import back2x from "../../assets/back2x.webp";
+import girl1x from "../../assets/girl1x.webp";
+import girl2x from "../../assets/girl2x.webp";
 
 const HomePage = () => {
   return (
     <section className={css.section}>
-      <div className={css.home_container}>
-        <h1 className={css.home_title}>
-          Unlock your potential with the best
-          <span className={css.highlighted}>language </span> tutors
-        </h1>
-        <p className={css.home_moto}>
-          Embark on an Exciting Language Journey with Expert Language Tutors:
-          Elevate your language proficiency to new heights by connecting with
-          highly qualified and experienced tutors.
-        </p>
-
+      <div className={css.home_section}>
+        <div className={css.home_container}>
+          <h1 className={css.home_title}>
+            Unlock your potential with the best
+            <span className={css.highlighted}>language </span> tutors
+          </h1>
+          <p className={css.home_moto}>
+            Embark on an Exciting Language Journey with Expert Language Tutors:
+            Elevate your language proficiency to new heights by connecting with
+            highly qualified and experienced tutors.
+          </p>
+        </div>
         <div className={css.imageWrapper}>
           <picture>
-            {/* Десктоп: від 1025px і більше */}
             <source
-              srcSet={`${back1x} 1x, ${back2x} 2x`}
-              media="(min-width: 1025px)"
+              srcSet={`${girl1x} 1x, ${girl2x} 2x`}
+              media="(min-width: 1422px)"
               type="image/webp"
             />
-
-            {/* Планшет: 768px–1024px */}
             <source
-              srcSet={`${back1x} 1x, ${back2x} 2x`}
-              media="(min-width: 768px) and (max-width: 1024px)"
+              srcSet={`${girl1x} 1x, ${girl2x} 2x`}
+              media="(min-width: 768px) and (max-width: 1421px)"
               type="image/webp"
             />
-
-            {/* Мобільні: <768px */}
             <img
-              src={back1x}
-              srcSet={`${back1x} 1x, ${back2x} 2x`}
+              src={girl1x}
+              srcSet={`${girl1x} 1x, ${girl2x} 2x`}
               alt="Language learning illustration"
               className={css.hero_img}
               loading="lazy"
@@ -53,6 +49,7 @@ const HomePage = () => {
           <FaLanguage className={css.decorIcon} />
         </div>
       </div>
+
       <div className={css.additional_info}>
         <ul className={css.stats_list}>
           <li>

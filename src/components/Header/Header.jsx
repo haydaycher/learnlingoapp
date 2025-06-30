@@ -26,10 +26,13 @@ export const Header = () => {
       <Navigation />
 
       {currentUser ? (
-        <>
-          <span>Welcome, {currentUser.email}</span>
-          <button onClick={handleLogout}>Logout</button>
-        </>
+        <div className={css.user_info}>
+          <span className={css.username}>Welcome, {currentUser.email}</span>
+          <button className={css.logout_btn} onClick={handleLogout}>
+            Logout
+          </button>
+          <BurgerMenu />
+        </div>
       ) : (
         <div className={css.authButtons}>
           <button
@@ -54,11 +57,6 @@ export const Header = () => {
           </button>
         </div>
       )}
-
-      <BurgerMenu
-        onLoginClick={() => setIsLoginOpen(true)}
-        onSignupClick={() => setIsSignupOpen(true)}
-      />
 
       {/* Modals */}
       <Modal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)}>
