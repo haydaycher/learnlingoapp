@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
+  /* padding: 12px 24px; */
 }
 
 .authButtons {
@@ -62,4 +62,60 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
+}
+/* Active link styling */
+nav a.active {
+  color: blue;
+  font-weight: bold;
+}
+/* мобільне меню */
+.mobileMenu {
+  display: none;
+}
+
+.menuBtn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #000;
+  outline: none;
+}
+
+.dropdown {
+  position: absolute;
+  right: 16px;
+  top: 60px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.dropdown button {
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+  color: #000;
+}
+
+.dropdown button:hover {
+  background: #f4f4f4;
+}
+
+/* мобільна адаптація */
+@media screen and (max-width: 767px) {
+  .authButtons {
+    display: none; /* ховаємо окремі кнопки */
+  }
+
+  .mobileMenu {
+    display: block;
+    position: relative;
+  }
 }
