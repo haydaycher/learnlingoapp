@@ -104,7 +104,7 @@
   padding: 12px 25px;
   border: none;
   border-radius: 10px;
-  background-color: #0078ff;
+  background-color: #f4c550;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
@@ -112,7 +112,7 @@
 }
 
 .loadMoreBtn:hover {
-  background-color: #005ecb;
+  background-color: #f4c550;
 }
 
 /* Мобільна адаптація */

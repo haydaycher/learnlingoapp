@@ -109,18 +109,18 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
-  color: white;
+  /* background-color: #1a1a1a;
+  color: white; */
   cursor: pointer;
   transition: border-color 0.25s;
-  border-radius: 12px;
+  /* border-radius: 12px;
   padding: 16px 215px;
   width: 472px;
-  height: 60px;
+  height: 60px; */
 }
-button:hover {
+/* button:hover {
   border-color: #646cff;
-}
+} */
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;

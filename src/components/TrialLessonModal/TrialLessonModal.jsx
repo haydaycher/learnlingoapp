@@ -51,12 +51,19 @@ const TrialLessonModal = ({ teacher, onClose }) => {
         <h2>
           Book trial lesson with {teacher.name} {teacher.surname}
         </h2>
+        <p>
+          Our experienced tutor will assess your current language level, discuss
+          your learning goals, and tailor the lesson to your specific needs.
+        </p>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <input placeholder="Your Name" {...register("name")} />
+          <input placeholder="Full Name" {...register("name")} />
           <p>{errors.name?.message}</p>
 
-          <input placeholder="Your Email" {...register("email")} />
+          <input placeholder="Email" {...register("email")} />
           <p>{errors.email?.message}</p>
+
+          <input placeholder="Phone number" {...register("phone")} />
+          <p>{errors.phone?.message}</p>
 
           <textarea
             placeholder="Comment or request..."
@@ -64,7 +71,9 @@ const TrialLessonModal = ({ teacher, onClose }) => {
           />
           <p>{errors.comment?.message}</p>
 
-          <button type="submit">Send Request</button>
+          <button className={CSS.book_btn} type="submit">
+            Book
+          </button>
         </form>
       </div>
     </div>

@@ -41,12 +41,19 @@
   border-radius: 6px;
 }
 
-.form button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background-color: #0077cc;
-  color: white;
+.book_btn {
+  border-radius: 12px;
+  padding: 16px 215px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.55556;
+  color: #121417;
+  width: 472px;
+  height: 60px;
   border: none;
+  outline: none;
+  background: #f4c550;
   border-radius: 6px;
   cursor: pointer;
 }
