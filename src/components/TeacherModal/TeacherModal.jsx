@@ -1,4 +1,4 @@
-import styles from "./TeacherModal.module.css";
+// import styles from "./TeacherModal.module.css";
 
 const TeacherModal = ({ teacher, onClose }) => {
   if (!teacher) return null;

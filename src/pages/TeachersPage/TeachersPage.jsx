@@ -1,6 +1,14 @@
+// src/pages/TeachersPage.jsx
 import { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
+import { db } from "../../firebase/config";
 
-import styles from "./TeachersPage.module.css";
+import css from "./TeachersPage.module.css";
+
+// Модальні вікна (створи свої компоненти окремо)
+import TeacherModal from "../../components/TeacherModal/TeacherModal";
+import TrialLessonModal from "../../components/TrialLessonModal/TrialLessonModal";
+import { Modal } from "../../components/Modal/Modal";
 
 const TeachersPage = () => {
   const [allTeachers, setAllTeachers] = useState([]);
@@ -10,67 +18,82 @@ const TeachersPage = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
-  const [selectedTeacherForTrial, setSelectedTeacherForTrial] = useState(null);
 
   const [selectedTeacher, setSelectedTeacher] = useState(null);
+  const [selectedTeacherForTrial, setSelectedTeacherForTrial] = useState(null);
+
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem("favorites");
     return saved ? JSON.parse(saved) : [];
   });
 
+  // ---- Фетч із Realtime Database ----
   useEffect(() => {
-    const fetchTeachers = async () => {
-      try {
-        const response = await fetch("/teachers.json");
-        const data = await response.json();
-        setAllTeachers(data);
-        setFilteredTeachers(data);
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
+    const teachersRef = ref(db, "/");
 
-    fetchTeachers();
+    const unsubscribe = onValue(teachersRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const teachersArray = Object.values(data);
+        setAllTeachers(teachersArray);
+        setFilteredTeachers(teachersArray);
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
+  // ---- Фільтри ----
   useEffect(() => {
     let filtered = [...allTeachers];
 
     if (selectedLanguage) {
-      filtered = filtered.filter((teacher) =>
-        teacher.languages.includes(selectedLanguage)
-      );
+      filtered = filtered.filter((t) => t.languages.includes(selectedLanguage));
     }
 
     if (selectedLevel) {
-      filtered = filtered.filter((teacher) =>
-        teacher.levels.includes(selectedLevel)
-      );
+      filtered = filtered.filter((t) => t.levels.includes(selectedLevel));
     }
 
     if (selectedPrice) {
       const maxPrice = parseInt(selectedPrice);
-      filtered = filtered.filter(
-        (teacher) => teacher.price_per_hour <= maxPrice
-      );
+      filtered = filtered.filter((t) => t.price_per_hour <= maxPrice);
     }
 
     setFilteredTeachers(filtered);
     setItemsToShow(4);
   }, [selectedLanguage, selectedLevel, selectedPrice, allTeachers]);
 
-  const handleLoadMore = () => {
-    setItemsToShow((prev) => prev + 4);
+  // ---- Фаворити ----
+  const isFavorite = (teacher) =>
+    favorites.some(
+      (fav) => fav.name === teacher.name && fav.surname === teacher.surname
+    );
+
+  const toggleFavorite = (teacher) => {
+    let updated;
+    if (isFavorite(teacher)) {
+      updated = favorites.filter(
+        (fav) => !(fav.name === teacher.name && fav.surname === teacher.surname)
+      );
+    } else {
+      updated = [...favorites, teacher];
+    }
+    setFavorites(updated);
+    localStorage.setItem("favorites", JSON.stringify(updated));
   };
+
+  // ---- Кнопка Load more ----
+  const handleLoadMore = () => setItemsToShow((prev) => prev + 4);
 
   const visibleTeachers = filteredTeachers.slice(0, itemsToShow);
 
   return (
-    <section className={styles.teachersSection}>
+    <section className={css.teachersSection}>
       <h1>Teachers</h1>
 
-      <div className={styles.filters}>
-        {/* Фільтри */}
+      {/* Фільтри */}
+      <div className={css.filters}>
         <select
           value={selectedLanguage}
           onChange={(e) => setSelectedLanguage(e.target.value)}
@@ -110,9 +133,10 @@ const TeachersPage = () => {
         </select>
       </div>
 
-      <ul className={styles.teacherList}>
+      {/* Список викладачів */}
+      <ul className={css.teacherList}>
         {visibleTeachers.map((teacher, index) => (
-          <li key={index} className={styles.teacherCard}>
+          <li key={index} className={css.teacherCard}>
             <img
               src={teacher.avatar_url}
               alt={`${teacher.name} ${teacher.surname}`}
@@ -127,13 +151,12 @@ const TeachersPage = () => {
             <button onClick={() => setSelectedTeacherForTrial(teacher)}>
               Book trial lesson
             </button>
-
             <button onClick={() => setSelectedTeacher(teacher)}>
               Read more
             </button>
             <button
               onClick={() => toggleFavorite(teacher)}
-              className={styles.heartBtn}
+              className={css.heartBtn}
             >
               {isFavorite(teacher) ? "💖" : "🤍"}
             </button>
@@ -141,26 +164,27 @@ const TeachersPage = () => {
         ))}
       </ul>
 
+      {/* Load more */}
       {itemsToShow < filteredTeachers.length && (
-        <button onClick={handleLoadMore} className={styles.loadMoreBtn}>
+        <button onClick={handleLoadMore} className={css.loadMoreBtn}>
           Load more
         </button>
       )}
 
-      {/* Модальне вікно */}
-      {selectedTeacher &&
-        ((
-          <TeacherModal
-            teacher={selectedTeacher}
-            onClose={() => setSelectedTeacher(null)}
-          />
-        ),
-        (
-          <TrialLessonModal
-            teacher={selectedTeacherForTrial}
-            onClose={() => setSelectedTeacherForTrial(null)}
-          />
-        ))}
+      {/* Модальні вікна */}
+      {selectedTeacher && (
+        <TeacherModal
+          teacher={selectedTeacher}
+          onClose={() => setSelectedTeacher(null)}
+        />
+      )}
+
+      {selectedTeacherForTrial && (
+        <TrialLessonModal
+          teacher={selectedTeacherForTrial}
+          onClose={() => setSelectedTeacherForTrial(null)}
+        />
+      )}
     </section>
   );
 };

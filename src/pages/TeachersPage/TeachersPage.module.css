@@ -1,41 +1,128 @@
-/* TeachersPage.module.css */
-/* .teachersSection {
-  padding: 2rem;
-} */
-
-.teacherList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
+.teachersSection {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
-.teacherCard {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 8px;
+.teachersSection h1 {
   text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
 }
 
-.loadMoreBtn {
-  margin: 2rem auto;
-  display: block;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  background-color: #0077cc;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 .filters {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .filters select {
-  padding: 0.5rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filters select:hover {
+  border-color: #888;
+}
+
+.teacherList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.teacherCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.teacherCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.teacherCard img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.teacherCard h2 {
+  font-size: 1.2rem;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.teacherCard p {
+  font-size: 0.9rem;
+  margin: 2px 0;
+  text-align: center;
+}
+
+.teacherCard button {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.teacherCard button:hover {
+  opacity: 0.85;
+}
+
+.teacherCard .heartBtn {
+  background: none;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.loadMoreBtn {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  background-color: #0078ff;
+  color: #fff;
   font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.loadMoreBtn:hover {
+  background-color: #005ecb;
+}
+
+/* Мобільна адаптація */
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .teacherCard {
+    padding: 15px;
+  }
 }

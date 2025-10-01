@@ -38,7 +38,7 @@ export const Header = () => {
 
       {currentUser ? (
         <div className={css.user_info}>
-          <span className={css.username}>Welcome, {currentUser.email}</span>
+          <span className={css.username}>Hi there, {currentUser.email}</span>
           <button className={css.logout_btn} onClick={handleLogout}>
             Logout
           </button>
