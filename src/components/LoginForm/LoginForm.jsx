@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
+import css from "./LoginForm.module.css";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -18,8 +19,9 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <form className={css.login_form} onSubmit={handleLogin}>
       <input
+        className={css.login_form_input}
         type="email"
         placeholder="Email"
         value={email}
@@ -27,13 +29,16 @@ export const LoginForm = () => {
         required
       />
       <input
+        className={css.login_form_input}
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Login</button>
+      <button className={css.login_form_button} type="submit">
+        Login
+      </button>
     </form>
   );
 };

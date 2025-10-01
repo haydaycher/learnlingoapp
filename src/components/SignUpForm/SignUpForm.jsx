@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
+import css from "./SignUpForm.module.css";
 
 export const SignUpForm = () => {
   // const [name, setName] = useState("");
@@ -19,8 +20,9 @@ export const SignUpForm = () => {
   };
 
   return (
-    <form onSubmit={handleSignUp}>
+    <form className={css.sign_form} onSubmit={handleSignUp}>
       <input
+        className={css.sign_form_input}
         type="email"
         placeholder="Email"
         value={email}
@@ -28,13 +30,16 @@ export const SignUpForm = () => {
         required
       />
       <input
+        className={css.sign_form_input}
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Sign Up</button>
+      <button className={css.sign_form_button} type="submit">
+        Sign Up
+      </button>
     </form>
   );
 };
