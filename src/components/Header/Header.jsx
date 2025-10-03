@@ -1,5 +1,4 @@
 // src/components/Header.jsx
-// src/components/Header.jsx
 import { useState } from "react";
 import { signOut } from "firebase/auth";
 import Logo from "../Logo/Logo.jsx";
@@ -10,26 +9,21 @@ import { LoginForm } from "../LoginForm/LoginForm.jsx";
 import { SignUpForm } from "../SignUpForm/SignUpForm.jsx";
 import { Modal } from "../Modal/Modal.jsx";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
+import { UpdateProfileForm } from "../UpdateProfileForm/UpdateProfileForm.jsx";
 import css from "./Header.module.css";
 
 export const Header = () => {
   const { currentUser } = useAuth();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const handleLogout = async () => {
     await signOut(auth);
   };
 
-  // Highlight active link
-  const currentLocation = window.location.pathname;
-  const menuItems = document.querySelectorAll("nav a");
-  menuItems.forEach((link) => {
-    if (link.getAttribute("href") === currentLocation.split("/").pop()) {
-      link.classList.add("active");
-    }
-  });
+  const username =
+    currentUser?.displayName || currentUser?.email?.split("@")[0];
 
   return (
     <section className={css.header}>
@@ -38,15 +32,16 @@ export const Header = () => {
 
       {currentUser ? (
         <div className={css.user_info}>
-          <span className={css.username}>Hi there, {currentUser.email}</span>
-          <button className={css.logout_btn} onClick={handleLogout}>
-            Logout
-          </button>
-          <BurgerMenu />
+          <span className={css.username}>Hi there, {username}</span>
+          {/* Тепер всі кнопки у BurgerMenu */}
+          <BurgerMenu
+            currentUser={currentUser}
+            onProfileClick={() => setIsProfileOpen(true)}
+            onLogout={handleLogout}
+          />
         </div>
       ) : (
         <>
-          {/* Десктопні кнопки */}
           <div className={css.authButtons}>
             <button
               className={css.authButtonLog}
@@ -69,37 +64,6 @@ export const Header = () => {
               Registration
             </button>
           </div>
-
-          {/* Мобільне меню */}
-          <div className={css.mobileMenu}>
-            <button
-              className={css.menuBtn}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Menu"
-            >
-              ☰
-            </button>
-            {isMenuOpen && (
-              <div className={css.dropdown}>
-                <button
-                  onClick={() => {
-                    setIsLoginOpen(true);
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  Log in
-                </button>
-                <button
-                  onClick={() => {
-                    setIsSignupOpen(true);
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  Registration
-                </button>
-              </div>
-            )}
-          </div>
         </>
       )}
 
@@ -110,6 +74,10 @@ export const Header = () => {
 
       <Modal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)}>
         <SignUpForm />
+      </Modal>
+
+      <Modal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)}>
+        <UpdateProfileForm />
       </Modal>
     </section>
   );

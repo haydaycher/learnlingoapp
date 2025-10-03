@@ -1,20 +1,19 @@
+// src/components/BurgerMenu/BurgerMenu.jsx
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import css from "./BurgerMenu.module.css";
 
-export const BurgerMenu = () => {
+export const BurgerMenu = ({ currentUser, onProfileClick, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setIsOpen((prev) => !prev);
-  };
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
-  // Функція для класу NavLink (вона автоматично отримує isActive)
   const getLinkClass = ({ isActive }) =>
     isActive ? `${css.link} ${css.active}` : css.link;
 
   return (
-    <div className={css.navigationBlock}>
+    <div className={`${css.navigationBlock} ${!currentUser ? "guest" : ""}`}>
       <div className={css.hamburgerMenu} onClick={toggleMenu}>
         <div
           className={`${css.bar} ${css.upperBar} ${isOpen ? css.open : ""}`}
@@ -45,6 +44,81 @@ export const BurgerMenu = () => {
                   Teachers
                 </NavLink>
               </li>
+
+              {/* Favorites */}
+              {currentUser && (
+                <li>
+                  <button
+                    onClick={() => {
+                      navigate("/favorites");
+                      toggleMenu();
+                    }}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      padding: "10px 20px",
+                      border: "none",
+                      background: "none",
+                      textAlign: "left",
+                      cursor: "pointer",
+                      fontWeight: 500,
+                      color: "#333",
+                    }}
+                  >
+                    Favorites
+                  </button>
+                </li>
+              )}
+
+              {/* Edit Profile */}
+              {currentUser && onProfileClick && (
+                <li>
+                  <button
+                    onClick={() => {
+                      onProfileClick();
+                      toggleMenu();
+                    }}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      padding: "10px 20px",
+                      border: "none",
+                      background: "none",
+                      textAlign: "left",
+                      cursor: "pointer",
+                      fontWeight: 500,
+                      color: "#333",
+                    }}
+                  >
+                    Edit Profile
+                  </button>
+                </li>
+              )}
+
+              {/* Logout */}
+              {currentUser && onLogout && (
+                <li>
+                  <button
+                    onClick={() => {
+                      onLogout();
+                      toggleMenu();
+                    }}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      padding: "10px 20px",
+                      border: "none",
+                      background: "none",
+                      textAlign: "left",
+                      cursor: "pointer",
+                      fontWeight: 500,
+                      color: "#333",
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
           <div className={css.menuBackground}></div>

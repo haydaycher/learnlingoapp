@@ -48,33 +48,8 @@
   right: 0;
   opacity: 0;
   animation: fadeInMenu 0.3s ease-out forwards;
-  z-index: 20; /* Зверху за menuBackground */
-}
-.menuList li a {
-  display: block;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: #333;
-  border-bottom: 1px solid #eee;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.menuList li a:hover {
-  background-color: #f4f4f4;
-}
-
-/* Абстрактний клас для посилання */
-.link {
-  color: #333;
-  font-weight: 500;
-}
-
-/* Активне посилання */
-.active {
-  color: #f4c550;
-  font-weight: 700;
-  background-color: #fff8dc; /* світлий фон для активного */
-  border-radius: 8px;
+  z-index: 30; /* вище за фон */
+  position: fixed;
 }
 
 .menuList ul {
@@ -83,44 +58,85 @@
   margin: 0;
 }
 
-.menuList li a {
+.menuList li a,
+.menuList li button {
   display: block;
+  width: 100%;
   padding: 10px 20px;
   text-decoration: none;
   color: #333;
-  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-weight: 500;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.menuList li a:hover {
-  background-color: #f4f4f4;
-}
-.menuList li a,
-.menuList li a:visited,
 .menuList li a:hover,
-.menuList li a:active {
-  text-decoration: none;
+.menuList li button:hover {
+  background-color: #f4f4f4;
+  color: #f4c550;
 }
 
+.menuList li a:focus,
+.menuList li button:focus {
+  outline: none;
+  background-color: #fff8dc;
+  border-radius: 8px;
+  color: #f4c550;
+}
+
+/* Активне посилання */
+.link.active {
+  color: #f4c550;
+  font-weight: 700;
+  background-color: #fff8dc;
+  border-radius: 8px;
+}
+
+/* Фоновий анімаційний елемент під menuList */
 .menuBackground {
   position: fixed;
-  top: 0;
-  right: 0;
+  /* top: 50%;
+  left: 50%; */
   width: 400px;
-  height: 400px;
+  height: 700px;
+  /* background-color: rgb(141 124 0 / 20%); */
   background-color: #f4c550;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transform: translate(40%, -30%);
-  z-index: 10;
-  animation: bubblePresent 0.3s ease-out forwards;
+  border-radius: 40% 45% 35% 40%;
+  transform: translate(-50%, -50%);
+  z-index: 10; /* нижче menuList */
+  overflow: hidden;
 }
 
-@keyframes bubblePresent {
-  0% {
-    transform: translate(100%, -100%);
+.menuBackground::before,
+.menuBackground::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 40% 45% 35% 40%;
+  z-index: -1; /* під основним фоном */
+}
+
+.menuBackground::before {
+  left: 40%;
+  background-color: rgba(69, 105, 144, 0.15);
+  animation: waves 6s infinite linear;
+}
+
+.menuBackground::after {
+  left: 35%;
+  background-color: rgba(2, 128, 144, 0.2);
+  animation: waves 7s infinite linear;
+}
+
+@keyframes waves {
+  from {
+    transform: rotate(0deg);
   }
-  100% {
-    transform: translate(40%, -30%);
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -135,8 +151,9 @@
   }
 }
 
+/* Ховати бургер-меню для гостей на десктопі */
 @media screen and (min-width: 1158px) {
-  .navigationBlock {
+  .navigationBlock.guest {
     display: none;
   }
 }

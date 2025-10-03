@@ -10,6 +10,23 @@ body {
   font-family: var(--font-asap);
 }
 
+.login_h {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #121417;
+}
+.login_p {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
+  margin-bottom: 40px;
+}
+
 .login_form {
   overflow: hidden;
   background-color: white;
@@ -36,14 +53,14 @@ body {
 
 .login_form::before {
   left: 40%;
-  bottom: -130%;
+  /* bottom: -130%; */
   background-color: rgba(69, 105, 144, 0.15);
   animation: waves 6s infinite linear;
 }
 
 .login_form::after {
   left: 35%;
-  bottom: -125%;
+  /* bottom: -125%; */
   background-color: rgba(2, 128, 144, 0.2);
   animation: waves 7s infinite linear;
 }
@@ -57,7 +74,9 @@ body {
   width: 100%;
   border: 0;
   padding: 10px 10px;
-  margin: 15px -10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  outline: none;
 }
 
 .login_form_button {
@@ -66,7 +85,7 @@ body {
   color: #fff;
   font-size: 16px;
   text-transform: uppercase;
-  width: 80px;
+  width: 100%;
   border: 0;
   padding: 10px 0;
   margin-top: 10px;
@@ -74,10 +93,42 @@ body {
   border-radius: 5px;
   background-color: #f4c550;
   transition: background-color 300ms;
+  outline: none;
+  border-radius: 12px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  /* color: #121417; */
+  margin-top: 40px;
 }
 
 .login_form_button:hover {
-  background-color: #f4c550;
+  background-color: #ffdc86;
+}
+
+.password_wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.eye_button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #555;
+}
+
+.eye_button:hover {
+  color: #000;
 }
 
 @keyframes waves {
@@ -88,12 +139,3 @@ body {
     transform: rotate(360deg);
   }
 }
-
-/* a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.6);
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  font-size: 12px;
-} */
