@@ -27,6 +27,7 @@ export const Header = () => {
 
   return (
     <section className={css.header}>
+      {/* Лівий блок: Логотип + Username */}
       <div className={css.leftBlock}>
         <Logo />
         {currentUser && (
@@ -34,8 +35,12 @@ export const Header = () => {
         )}
       </div>
 
-      <Navigation />
+      {/* Центрований блок навігації */}
+      <div className={css.navWrapper}>
+        <Navigation />
+      </div>
 
+      {/* Правий блок: BurgerMenu або кнопки авторизації */}
       {currentUser ? (
         <BurgerMenu
           currentUser={currentUser}

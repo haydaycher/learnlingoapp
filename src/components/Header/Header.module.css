@@ -2,6 +2,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  padding: 0 20px; /* або потрібний відступ з боків */
+}
+
+/* Центруємо навігацію по всій ширині viewport */
+.navWrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Додатково можна обмежити максимальну ширину навігації */
+.navWrapper nav {
+  display: flex;
+  gap: 24px; /* відстань між посиланнями */
 }
 
 .leftBlock {

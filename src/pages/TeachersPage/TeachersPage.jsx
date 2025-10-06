@@ -189,8 +189,6 @@
 //   );
 // };
 
-// export default TeachersPage;
-// src/pages/TeachersPage/TeachersPage.jsx
 import { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { db, auth } from "../../firebase/config";
@@ -211,6 +209,7 @@ const TeachersPage = () => {
 
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [selectedTeacherForTrial, setSelectedTeacherForTrial] = useState(null);
+  const [expandedCards, setExpandedCards] = useState([]);
 
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem("favorites");
@@ -221,7 +220,7 @@ const TeachersPage = () => {
 
   // --- Fetch teachers from Firebase ---
   useEffect(() => {
-    const teachersRef = ref(db, "/"); // Якщо у тебе дані в корені
+    const teachersRef = ref(db, "/");
     const unsubscribe = onValue(teachersRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
@@ -248,7 +247,7 @@ const TeachersPage = () => {
     setItemsToShow(4);
   }, [selectedLanguage, selectedLevel, selectedPrice, allTeachers]);
 
-  // --- Favorites toggle ---
+  // --- Favorites ---
   const isFavorite = (teacher) =>
     favorites.some(
       (fav) => fav.name === teacher.name && fav.surname === teacher.surname
@@ -274,6 +273,14 @@ const TeachersPage = () => {
   };
 
   const handleLoadMore = () => setItemsToShow((prev) => prev + 4);
+
+  // --- Expand details ---
+  const toggleExpand = (index) => {
+    setExpandedCards((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
   const visibleTeachers = filteredTeachers.slice(0, itemsToShow);
 
   return (
@@ -324,31 +331,91 @@ const TeachersPage = () => {
       {/* Teacher Cards */}
       <ul className={css.teacherList}>
         {visibleTeachers.map((teacher, index) => (
-          <li
-            key={index}
-            className={`${css.teacherCard} ${css.fadeIn}`} // для плавного завантаження
-          >
-            <img
-              src={teacher.avatar_url}
-              alt={`${teacher.name} ${teacher.surname}`}
-            />
-            <h2>
-              {teacher.name} {teacher.surname}
-            </h2>
-            <p>Languages: {teacher.languages.join(", ")}</p>
-            <p>Levels: {teacher.levels.join(", ")}</p>
-            <p>Price: ${teacher.price_per_hour}</p>
-            <p>Rating: {teacher.rating}⭐</p>
-            <button onClick={() => setSelectedTeacherForTrial(teacher)}>
-              Book trial lesson
-            </button>
-            <button onClick={() => setSelectedTeacher(teacher)}>Read more</button>
-            <button
-              onClick={() => toggleFavorite(teacher)}
-              className={`${css.heartBtn} ${isFavorite(teacher) ? css.favorited : ""}`}
-            >
-              {isFavorite(teacher) ? "💖" : "🤍"}
-            </button>
+          <li key={index} className={css.teacherCard}>
+            <div className={css.cardTop}>
+              <img
+                src={teacher.avatar_url}
+                alt={`${teacher.name} ${teacher.surname}`}
+              />
+              <div className={css.cardInfo}>
+                <h2>
+                  {teacher.name} {teacher.surname}
+                </h2>
+                <button
+                  onClick={() => toggleFavorite(teacher)}
+                  className={`${css.heartBtn} ${
+                    isFavorite(teacher) ? css.favorited : ""
+                  }`}
+                >
+                  {isFavorite(teacher) ? "💖" : "🤍"}
+                </button>
+                <p>
+                  <strong>Languages:</strong> {teacher.languages.join(", ")}
+                </p>
+
+                {/* ✅ додаємо рівні мови */}
+                {teacher.levels && teacher.levels.length > 0 && (
+                  <p>
+                    <strong>Teaches levels:</strong> {teacher.levels.join(", ")}
+                  </p>
+                )}
+
+                <p>
+                  <strong>Price:</strong> ${teacher.price_per_hour}
+                </p>
+                <p>
+                  <strong>Rating:</strong> {teacher.rating}⭐
+                </p>
+
+                <div className={css.cardActions}>
+                  <span
+                    onClick={() => toggleExpand(index)}
+                    className={css.readMoreLink}
+                  >
+                    {expandedCards.includes(index)
+                      ? "Hide details"
+                      : "Read more"}
+                  </span>
+                </div>
+                <button onClick={() => setSelectedTeacherForTrial(teacher)}>
+                  Book trial lesson
+                </button>
+              </div>
+            </div>
+
+            {expandedCards.includes(index) && (
+              <div className={css.cardExtra}>
+                <h4>About the teacher:</h4>
+                <p>{teacher.lesson_info}</p>
+
+                <h4>Experience:</h4>
+                <p>{teacher.experience}</p>
+
+                <h4>Student Reviews:</h4>
+                {teacher.reviews && teacher.reviews.length > 0 ? (
+                  <ul>
+                    {teacher.reviews.map((rev, i) => (
+                      <li key={i} className={css.reviewItem}>
+                        {rev.reviewer_avatar && (
+                          <img
+                            src={rev.reviewer_avatar}
+                            alt={rev.reviewer_name}
+                            className={css.reviewAvatar}
+                          />
+                        )}
+                        <div>
+                          <strong>{rev.reviewer_name}</strong> (
+                          {rev.reviewer_rating}⭐):
+                          <p>{rev.comment}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No reviews yet.</p>
+                )}
+              </div>
+            )}
           </li>
         ))}
       </ul>
