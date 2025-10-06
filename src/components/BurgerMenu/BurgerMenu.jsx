@@ -1,11 +1,9 @@
-// src/components/BurgerMenu/BurgerMenu.jsx
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import css from "./BurgerMenu.module.css";
 
 export const BurgerMenu = ({ currentUser, onProfileClick, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
@@ -14,6 +12,7 @@ export const BurgerMenu = ({ currentUser, onProfileClick, onLogout }) => {
 
   return (
     <div className={`${css.navigationBlock} ${!currentUser ? "guest" : ""}`}>
+      {/* кнопка-бургер / хрестик */}
       <div className={css.hamburgerMenu} onClick={toggleMenu}>
         <div
           className={`${css.bar} ${css.upperBar} ${isOpen ? css.open : ""}`}
@@ -45,82 +44,50 @@ export const BurgerMenu = ({ currentUser, onProfileClick, onLogout }) => {
                 </NavLink>
               </li>
 
-              {/* Favorites */}
               {currentUser && (
-                <li>
-                  <button
-                    onClick={() => {
-                      navigate("/favorites");
-                      toggleMenu();
-                    }}
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      padding: "10px 20px",
-                      border: "none",
-                      background: "none",
-                      textAlign: "left",
-                      cursor: "pointer",
-                      fontWeight: 500,
-                      color: "#333",
-                    }}
-                  >
-                    Favorites
-                  </button>
-                </li>
-              )}
+                <>
+                  <li>
+                    <NavLink
+                      to="/favorites"
+                      onClick={toggleMenu}
+                      className={getLinkClass}
+                    >
+                      Favorites
+                    </NavLink>
+                  </li>
 
-              {/* Edit Profile */}
-              {currentUser && onProfileClick && (
-                <li>
-                  <button
-                    onClick={() => {
-                      onProfileClick();
-                      toggleMenu();
-                    }}
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      padding: "10px 20px",
-                      border: "none",
-                      background: "none",
-                      textAlign: "left",
-                      cursor: "pointer",
-                      fontWeight: 500,
-                      color: "#333",
-                    }}
-                  >
-                    Edit Profile
-                  </button>
-                </li>
-              )}
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onProfileClick?.();
+                        toggleMenu();
+                      }}
+                      className={css.link}
+                    >
+                      Edit Profile
+                    </a>
+                  </li>
 
-              {/* Logout */}
-              {currentUser && onLogout && (
-                <li>
-                  <button
-                    onClick={() => {
-                      onLogout();
-                      toggleMenu();
-                    }}
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      padding: "10px 20px",
-                      border: "none",
-                      background: "none",
-                      textAlign: "left",
-                      cursor: "pointer",
-                      fontWeight: 500,
-                      color: "#333",
-                    }}
-                  >
-                    Logout
-                  </button>
-                </li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onLogout?.();
+                        toggleMenu();
+                      }}
+                      className={css.link}
+                    >
+                      Logout
+                    </a>
+                  </li>
+                </>
               )}
             </ul>
           </div>
+
           <div className={css.menuBackground}></div>
         </>
       )}

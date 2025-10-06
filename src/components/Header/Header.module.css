@@ -2,7 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* padding: 12px 24px; */
+}
+
+.leftBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* відступ між логотипом і текстом */
+}
+
+.username {
+  font-weight: 600;
+  color: #d09709;
+  /* color: #121417; */
+  font-size: 16px;
+  white-space: nowrap;
 }
 
 .authButtons {
@@ -63,11 +76,21 @@
   text-overflow: ellipsis;
   display: inline-block;
 }
-/* Active link styling */
-nav a.active {
-  color: blue;
-  font-weight: bold;
+nav a,
+nav a:active,
+nav a:focus {
+  outline: none; /* прибирає стандартну обводку */
+  box-shadow: none; /* прибирає можливі тіні */
 }
+
+nav a.active {
+  color: #f4c550; /* колір активного посилання */
+  font-weight: 700;
+  background: transparent;
+  outline: none; /* обов’язково для активного */
+  box-shadow: none;
+}
+
 /* мобільне меню */
 .mobileMenu {
   display: none;

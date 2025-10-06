@@ -27,44 +27,44 @@ export const Header = () => {
 
   return (
     <section className={css.header}>
-      <Logo />
+      <div className={css.leftBlock}>
+        <Logo />
+        {currentUser && (
+          <span className={css.username}>Hi there, {username}</span>
+        )}
+      </div>
+
       <Navigation />
 
       {currentUser ? (
-        <div className={css.user_info}>
-          <span className={css.username}>Hi there, {username}</span>
-          {/* Тепер всі кнопки у BurgerMenu */}
-          <BurgerMenu
-            currentUser={currentUser}
-            onProfileClick={() => setIsProfileOpen(true)}
-            onLogout={handleLogout}
-          />
-        </div>
+        <BurgerMenu
+          currentUser={currentUser}
+          onProfileClick={() => setIsProfileOpen(true)}
+          onLogout={handleLogout}
+        />
       ) : (
-        <>
-          <div className={css.authButtons}>
-            <button
-              className={css.authButtonLog}
-              onClick={() => setIsLoginOpen(true)}
-            >
-              <img
-                src="/log-in-enter.svg"
-                alt="Log In Icon"
-                width="20"
-                height="20"
-                className={css.authButtonIcon}
-              />
-              Log in
-            </button>
+        <div className={css.authButtons}>
+          <button
+            className={css.authButtonLog}
+            onClick={() => setIsLoginOpen(true)}
+          >
+            <img
+              src="/log-in-enter.svg"
+              alt="Log In Icon"
+              width="20"
+              height="20"
+              className={css.authButtonIcon}
+            />
+            Log in
+          </button>
 
-            <button
-              className={css.authButtonReg}
-              onClick={() => setIsSignupOpen(true)}
-            >
-              Registration
-            </button>
-          </div>
-        </>
+          <button
+            className={css.authButtonReg}
+            onClick={() => setIsSignupOpen(true)}
+          >
+            Registration
+          </button>
+        </div>
       )}
 
       {/* Modals */}

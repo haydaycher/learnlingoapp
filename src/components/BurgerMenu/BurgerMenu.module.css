@@ -3,15 +3,18 @@
   z-index: 10;
 }
 
+/* закріплений бургер-хрестик */
 .hamburgerMenu {
   width: 30px;
   height: 30px;
-  position: relative;
+  position: fixed;
+  top: 40px;
+  right: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 11;
+  z-index: 100;
 }
 
 .bar {
@@ -25,7 +28,6 @@
 .upperBar {
   transform: translateY(-10px);
 }
-
 .lowerBar {
   transform: translateY(10px);
 }
@@ -33,23 +35,21 @@
 .open.upperBar {
   transform: rotate(45deg);
 }
-
 .open.lowerBar {
   transform: rotate(-45deg);
 }
-
 .middleBar.hidden {
   opacity: 0;
 }
 
+/* випадаюче меню */
 .menuList {
-  position: absolute;
-  top: 60px;
-  right: 0;
+  position: fixed;
+  top: 80px;
+  right: 30px;
   opacity: 0;
   animation: fadeInMenu 0.3s ease-out forwards;
-  z-index: 30; /* вище за фон */
-  position: fixed;
+  z-index: 30;
 }
 
 .menuList ul {
@@ -58,8 +58,7 @@
   margin: 0;
 }
 
-.menuList li a,
-.menuList li button {
+.link {
   display: block;
   width: 100%;
   padding: 10px 20px;
@@ -72,21 +71,14 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.menuList li a:hover,
-.menuList li button:hover {
-  background-color: #f4f4f4;
-  color: #f4c550;
-}
-
-.menuList li a:focus,
-.menuList li button:focus {
-  outline: none;
+/* hover */
+.link:hover {
   background-color: #fff8dc;
-  border-radius: 8px;
   color: #f4c550;
+  border-radius: 8px;
 }
 
-/* Активне посилання */
+/* активне лише якщо NavLink активний */
 .link.active {
   color: #f4c550;
   font-weight: 700;
@@ -94,18 +86,17 @@
   border-radius: 8px;
 }
 
-/* Фоновий анімаційний елемент під menuList */
+/* фон позаду меню */
 .menuBackground {
   position: fixed;
-  /* top: 50%;
-  left: 50%; */
-  width: 400px;
-  height: 700px;
-  /* background-color: rgb(141 124 0 / 20%); */
-  background-color: #f4c550;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 400px;
+  background-color: #ebd9ae;
   border-radius: 40% 45% 35% 40%;
-  transform: translate(-50%, -50%);
-  z-index: 10; /* нижче menuList */
+  transform: translate(30%, -10%);
+  z-index: 10;
   overflow: hidden;
 }
 
@@ -113,10 +104,11 @@
 .menuBackground::after {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 700px;
+  height: 800px;
   border-radius: 40% 45% 35% 40%;
-  z-index: -1; /* під основним фоном */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  z-index: -1;
 }
 
 .menuBackground::before {
@@ -151,7 +143,7 @@
   }
 }
 
-/* Ховати бургер-меню для гостей на десктопі */
+/* ховати бургер у гостей на десктопі */
 @media screen and (min-width: 1158px) {
   .navigationBlock.guest {
     display: none;
