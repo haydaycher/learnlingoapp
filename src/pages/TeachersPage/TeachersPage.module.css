@@ -66,19 +66,82 @@
   width: 100%;
 }
 
+.book_btn {
+  border-radius: 12px;
+  padding: 16px 48px;
+  width: 232px;
+  height: 60px;
+  background: #f4c550;
+  font-weight: 700;
+  /* font-size: 18px; */
+  line-height: 156%;
+  color: #121417;
+}
+
+.levelList {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.levelItem {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #f4f4f4;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 111%;
+  color: #121417;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.activeLevel {
+  background: #9fbaae;
+  color: #ffffff;
+}
+
 .cardTop {
   display: flex;
   gap: 1rem;
+  position: relative;
 }
 
 .cardInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+}
+
+.cardTopRight {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+}
+
+.cardTopRight p {
   margin: 0;
-  text-align: left;
+  font-weight: 500;
+}
+
+.cardTopRight .heartBtn {
+  margin: 0;
 }
 
 .cardActions {
   display: flex;
-  align-items: center;
+  flex-direction: column; /* зберігаємо вертикальне розташування елементів */
+  align-items: flex-start; /* вирівнюємо зліва замість центру */
   gap: 1rem;
   margin-top: 0.5rem;
 }
