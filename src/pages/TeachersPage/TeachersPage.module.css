@@ -3,7 +3,8 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* вирівнює весь контент ліворуч */
+  gap: 16px;
 }
 
 .filters {
@@ -11,6 +12,39 @@
   gap: 1rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  justify-content: flex-start; /* вирівнює зліва */
+  align-items: flex-start;
+}
+.filters p {
+  margin-bottom: 4px; /* відстань між назвою і селектом */
+  font-weight: 600;
+}
+
+.filters select {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #121417;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.filterBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.teachersPage_p {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #8a8a89;
 }
 
 .teacherList {
