@@ -3,6 +3,7 @@ import { useState } from "react";
 import { updateProfile, updatePassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { useAuth } from "../AuthProvider/AuthProvider";
+import css from "./UpdateProfileForm.module.css";
 
 export const UpdateProfileForm = () => {
   const { currentUser } = useAuth();
@@ -16,22 +17,17 @@ export const UpdateProfileForm = () => {
       if (name && name !== currentUser.displayName) {
         await updateProfile(currentUser, { displayName: name });
       }
-
       if (newPassword) {
         await updatePassword(currentUser, newPassword);
       }
-
-      setMessage("Profile updated successfully");
+      setMessage("Profile updated successfully ✅");
     } catch (err) {
       setMessage(err.message);
     }
   };
 
   return (
-    <form
-      onSubmit={handleUpdate}
-      style={{ padding: "20px", background: "#fff", borderRadius: "8px" }}
-    >
+    <form onSubmit={handleUpdate} className={css.formContainer}>
       <h2>Update Profile</h2>
 
       <label>
