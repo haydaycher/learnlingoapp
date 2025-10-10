@@ -10,24 +10,88 @@
   align-items: center;
   z-index: 1000;
 }
+.close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  color: #333;
+  z-index: 10;
+}
 
+/* Для гарантії фіксації навіть на маленьких екранах */
 .modal {
+  position: relative;
   background: white;
   padding: 2rem;
   border-radius: 8px;
   width: 90%;
   max-width: 500px;
+  box-sizing: border-box;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.teacherName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.reasonSection {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.reasonSection p {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.reasonSection label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
   position: relative;
 }
 
-.close {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
+.reasonSection input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  position: relative;
   cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.reasonSection input[type="checkbox"]:checked {
+  border-color: #f4c550;
+}
+
+.reasonSection input[type="checkbox"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: #f4c550;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form input,
@@ -43,17 +107,51 @@
 
 .book_btn {
   border-radius: 12px;
-  padding: 16px 215px;
+  padding: 16px;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: 1.55556;
   color: #121417;
-  width: 472px;
+  width: 100%;
   height: 60px;
   border: none;
-  outline: none;
   background: #f4c550;
-  border-radius: 6px;
   cursor: pointer;
+}
+
+.book_btn:hover {
+  background: #ffd24c;
+}
+
+.teacherInfo {
+  display: flex;
+
+  gap: 12px;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.teacherAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f4c550;
+}
+
+.teacherName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .teacherAvatar {
+    width: 40px;
+    height: 40px;
+  }
+  .teacherName {
+    font-size: 1rem;
+  }
 }

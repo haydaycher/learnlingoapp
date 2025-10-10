@@ -27,7 +27,6 @@ const TrialLessonModal = ({ teacher, onClose }) => {
     onClose();
   };
 
-  // Закриття по Esc
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") onClose();
@@ -48,6 +47,7 @@ const TrialLessonModal = ({ teacher, onClose }) => {
         <button className={styles.close} onClick={onClose}>
           ×
         </button>
+
         <h2>
           Book trial lesson with {teacher.name} {teacher.surname}
         </h2>
@@ -55,6 +55,47 @@ const TrialLessonModal = ({ teacher, onClose }) => {
           Our experienced tutor will assess your current language level, discuss
           your learning goals, and tailor the lesson to your specific needs.
         </p>
+
+        <div className={styles.teacherInfo}>
+          {teacher.avatar_url && (
+            <img
+              src={teacher.avatar_url}
+              alt={`${teacher.name} ${teacher.surname}`}
+              className={styles.teacherAvatar}
+            />
+          )}
+          <div className={styles.cardInfo}>
+            <p>Your teacher</p>
+            <h3>
+              {teacher.name} {teacher.surname}
+            </h3>
+          </div>
+        </div>
+
+        <div className={styles.reasonSection}>
+          <p>What is your main reason for learning English?</p>
+          <label>
+            <input type="checkbox" {...register("reason")} value="Work" />
+            Career and business
+          </label>
+          <label>
+            <input type="checkbox" {...register("reason")} value="Study" />
+            Lesson for kids
+          </label>
+          <label>
+            <input type="checkbox" {...register("reason")} value="Travel" />
+            Living abroad
+          </label>
+          <label>
+            <input type="checkbox" {...register("reason")} value="Personal" />
+            Exams and coursework
+          </label>
+          <label>
+            <input type="checkbox" {...register("reason")} value="Other" />
+            Culture, travel or hobby
+          </label>
+        </div>
+
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <input placeholder="Full Name" {...register("name")} />
           <p>{errors.name?.message}</p>
@@ -65,13 +106,7 @@ const TrialLessonModal = ({ teacher, onClose }) => {
           <input placeholder="Phone number" {...register("phone")} />
           <p>{errors.phone?.message}</p>
 
-          <textarea
-            placeholder="Comment or request..."
-            {...register("comment")}
-          />
-          <p>{errors.comment?.message}</p>
-
-          <button className={CSS.book_btn} type="submit">
+          <button className={styles.book_btn} type="submit">
             Book
           </button>
         </form>
