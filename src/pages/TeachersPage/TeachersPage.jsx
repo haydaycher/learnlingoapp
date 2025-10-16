@@ -7,6 +7,71 @@ import TeacherModal from "../../components/TeacherModal/TeacherModal";
 import TrialLessonModal from "../../components/TrialLessonModal/TrialLessonModal";
 import { Modal } from "../../components/Modal/Modal";
 
+const languages = [
+  "English",
+  "Spanish",
+  "French",
+  "German",
+  "Mandarin Chinese",
+  "Italian",
+  "Vietnamese",
+  "Korean",
+];
+
+const levels = [
+  "A1 Beginner",
+  "A2 Elementary",
+  "B1 Intermediate",
+  "B2 Upper-Intermediate",
+  "C1 Advanced",
+  "C2 Proficient",
+];
+
+const prices = ["10", "20", "30", "40"];
+
+const CustomSelect = ({ value, onChange, options, isPrice, width }) => {
+  const [open, setOpen] = useState(false);
+  const placeholder = options[0]; // перше в списку як плейсхолдер
+
+  const handleSelect = (option) => {
+    onChange(option);
+    setOpen(false);
+  };
+
+  return (
+    <div className={css.customSelectWrapper} style={{ width }}>
+      <div
+        className={css.customSelectDisplay}
+        onClick={() => setOpen(!open)}
+        style={{ width }}
+      >
+        {isPrice ? (
+          <>
+            {value || placeholder}
+            <span className={css.dollarSign}>$</span>
+          </>
+        ) : (
+          value || placeholder
+        )}
+        <img src="/chevron-down.svg" alt="chevron" className={css.chevron} />
+      </div>
+      {open && (
+        <ul className={css.customSelectOptions}>
+          {options.map((opt) => (
+            <li
+              key={opt}
+              onClick={() => handleSelect(opt)}
+              className={opt === value ? css.activeOption : ""}
+            >
+              {opt}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
 const TeachersPage = () => {
   const [allTeachers, setAllTeachers] = useState([]);
   const [filteredTeachers, setFilteredTeachers] = useState([]);
@@ -94,56 +159,33 @@ const TeachersPage = () => {
       <div className={css.filters}>
         <div className={css.filterBlock}>
           <p className={css.teachersPage_p}>Languages</p>
-          <select
-            className={css.languageSelect}
+          <CustomSelect
             value={selectedLanguage}
-            onChange={(e) => setSelectedLanguage(e.target.value)}
-          >
-            <option value="">All Languages</option>
-            <option value="English">English</option>
-            <option value="Spanish">Spanish</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-            <option value="Mandarin Chinese">Mandarin Chinese</option>
-            <option value="Italian">Italian</option>
-            <option value="Vietnamese">Vietnamese</option>
-            <option value="Korean">Korean</option>
-          </select>
+            onChange={setSelectedLanguage}
+            options={languages}
+            width="221px"
+          />
         </div>
 
         <div className={css.filterBlock}>
           <p className={css.teachersPage_p}>Level of knowledge</p>
-          <select
-            className={css.levelSelect}
+          <CustomSelect
             value={selectedLevel}
-            onChange={(e) => setSelectedLevel(e.target.value)}
-          >
-            <option value="">All Levels</option>
-            <option value="A1 Beginner">A1 Beginner</option>
-            <option value="A2 Elementary">A2 Elementary</option>
-            <option value="B1 Intermediate">B1 Intermediate</option>
-            <option value="B2 Upper-Intermediate">B2 Upper-Intermediate</option>
-            <option value="C1 Advanced">C1 Advanced</option>
-            <option value="C2 Proficient">C2 Proficient</option>
-          </select>
+            onChange={setSelectedLevel}
+            options={levels}
+            width="198px"
+          />
         </div>
 
         <div className={css.filterBlock}>
           <p className={css.teachersPage_p}>Price</p>
-          <div className={css.priceSelectWrapper}>
-            <select
-              className={css.priceSelect}
-              value={selectedPrice}
-              onChange={(e) => setSelectedPrice(e.target.value)}
-            >
-              <option value="">0</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-            </select>
-            <span className={css.dollar}>$</span>
-          </div>
+          <CustomSelect
+            value={selectedPrice}
+            onChange={setSelectedPrice}
+            options={prices}
+            isPrice={true}
+            width="124px"
+          />
         </div>
       </div>
 
@@ -152,37 +194,65 @@ const TeachersPage = () => {
         {visibleTeachers.map((teacher, index) => (
           <li key={index} className={css.teacherCard}>
             <div className={css.cardTop}>
-              <img
-                src={teacher.avatar_url}
-                alt={`${teacher.name} ${teacher.surname}`}
-              />
+              <div
+                className={css.avatarWrapper}
+                style={{ position: "relative", width: 96, height: 96 }}
+              >
+                <img
+                  src={teacher.avatar_url}
+                  alt={`${teacher.name} ${teacher.surname}`}
+                  className={css.teacherAvatar}
+                  style={{ width: "100%", height: "100%", borderRadius: "50%" }}
+                />
+                <div
+                  className={css.statusDotWrapper}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    width: 12,
+                    height: 12,
+                  }}
+                >
+                  <img
+                    src="/online.svg"
+                    alt="online"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </div>
+              </div>
+
               <div className={css.cardInfo}>
                 <h2>
                   {teacher.name} {teacher.surname}
                 </h2>
 
-                {/* Блок ціни, рейтингу та кнопки вподобати */}
+                {/* Top right block */}
                 <div className={css.cardTopRight}>
                   <p>
-                    <strong>Lessons online</strong> ${teacher.price_per_hour}
+                    <strong>Lessons online:</strong> ${teacher.price_per_hour}
                   </p>
                   <p>
                     <strong>Lessons done:</strong> ${teacher.price_per_hour}
                   </p>
                   <p>
-                    ⭐<strong>Rating:</strong>
-                    {teacher.rating}
+                    ⭐<strong>Rating:</strong> {teacher.rating}
                   </p>
                   <p>
-                    <strong>Price/ 1 hour:</strong> ${teacher.price_per_hour}
+                    <strong>Price/1 hour:</strong> ${teacher.price_per_hour}
                   </p>
                   <button
                     onClick={() => toggleFavorite(teacher)}
-                    className={`${css.heartBtn} ${
-                      isFavorite(teacher) ? css.favorited : ""
-                    }`}
+                    className={css.heartBtn}
                   >
-                    {isFavorite(teacher) ? "💖" : "🤍"}
+                    <img
+                      src={
+                        isFavorite(teacher) ? "/heart-hover.svg" : "/heart.svg"
+                      }
+                      alt="favorite"
+                      width={26}
+                      height={26}
+                    />
                   </button>
                 </div>
 
@@ -227,11 +297,23 @@ const TeachersPage = () => {
                     {teacher.reviews.map((rev, i) => (
                       <li key={i} className={css.reviewItem}>
                         {rev.reviewer_avatar && (
-                          <img
-                            src={rev.reviewer_avatar}
-                            alt={rev.reviewer_name}
-                            className={css.reviewAvatar}
-                          />
+                          <div className={css.avatarWrapper}>
+                            <img
+                              src={teacher.avatar_url}
+                              alt={`${teacher.name} ${teacher.surname}`}
+                              className={css.teacherAvatar}
+                              width={96}
+                              height={96}
+                            />
+                            <div className={css.statusDotWrapper}>
+                              <img
+                                src="/online.svg"
+                                alt="online"
+                                width={12}
+                                height={12}
+                              />
+                            </div>
+                          </div>
                         )}
                         <div>
                           <strong>{rev.reviewer_name}</strong> (

@@ -3,7 +3,7 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* вирівнює весь контент ліворуч */
+  align-items: flex-start;
   gap: 16px;
 }
 
@@ -12,72 +12,74 @@
   gap: 1rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
-  justify-content: flex-start; /* вирівнює зліва */
+  justify-content: flex-start;
   align-items: flex-start;
 }
+
 .filters p {
-  margin-bottom: 8px; /* відстань між назвою і селектом */
+  margin-bottom: 8px;
   font-weight: 600;
 }
 
-.filters select {
-  /* width: 100%; */
-  border: none;
-  color: #121417;
-  background-color: #fff;
-  cursor: pointer;
+.customSelectWrapper {
+  position: relative;
+}
 
-  border-radius: 14px;
+.customSelectDisplay {
+  background: #fff;
+  color: #121417;
   padding: 14px 18px;
-  /* width: 221px; */
-  /* height: 48px; */
-  outline: none;
-  appearance: none; /* прибрати стандартну стрілку */
-  background-image: url("/public/chevron-down.svg"); /* твоя іконка */
-  background-repeat: no-repeat;
-  background-size: 20px 20px; /* розмір стрілки */
-  background-position: right 18px center; /* позиція всередині інпута */
+  border-radius: 14px;
   cursor: pointer;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 18px;
-  line-height: 111%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customSelectOptions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 4px 0 0 0;
+  padding: 0;
+  border-radius: 12px;
+  color: #8a8a89;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.customSelectOptions li {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.customSelectOptions li:hover {
+  background: #f4f4f4;
+}
+.customSelectOptions li.activeOption {
   color: #121417;
+  font-weight: 500; /* опційно, щоб було більш помітно */
 }
 
-/* Конкретна ширина для кожного селекта */
-.languageSelect {
-  width: 221px;
+.chevron {
+  margin-left: 8px;
 }
-
-.levelSelect {
-  width: 198px;
-}
-
-.priceSelect {
-  width: 124px;
+.dollarSign {
+  margin-left: 4px; /* відступ між цифрою і знаком $ */
+  font-weight: 500;
 }
 
 .filterBlock {
   display: flex;
   flex-direction: column;
-}
-.priceSelectWrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.dollar {
-  position: absolute;
-  right: 50%; /* зміщено від правого краю */
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 111%;
-  color: #121417;
 }
 
 .teachersPage_p {
@@ -103,22 +105,91 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   display: flex;
-  text-align: start;
   flex-direction: column;
+  text-align: start;
   transition: transform 0.3s ease;
   width: 100%;
 }
 
-.book_btn {
-  border-radius: 12px;
-  padding: 16px 48px;
-  width: 232px;
-  height: 60px;
-  background: #f4c550;
-  font-weight: 700;
-  /* font-size: 18px; */
-  line-height: 156%;
+.statusDotWrapper {
+  position: absolute;
+  top: -4px; /* кружечок трохи піднімається над верхнім краєм */
+  right: -4px; /* трохи виходить за правий край */
+  width: 12px;
+  height: 12px;
+}
+
+.avatarWrapper {
+  position: relative; /* ключове */
+  display: inline-block; /* або flex, якщо потрібно */
+}
+
+.teacherAvatar {
+  display: block;
+  width: 96px; /* твій розмір */
+  height: 96px; /* твій розмір */
+  border-radius: 50%; /* якщо аватар круглий */
+}
+
+.statusDot {
+  position: absolute;
+  top: 0; /* початок зверху аватарки */
+  right: 0; /* початок правого краю аватарки */
+  width: 12px;
+  height: 12px;
+}
+
+.cardTop {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.cardInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+}
+
+.cardTopRight {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.cardTopRight p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.cardTopRight .heartBtn {
+  margin: 0;
+}
+
+.cardActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.readMoreLink {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: underline;
   color: #121417;
+  cursor: pointer;
 }
 
 .levelList {
@@ -145,55 +216,6 @@
 .activeLevel {
   background: #9fbaae;
   color: #ffffff;
-}
-
-.cardTop {
-  display: flex;
-  gap: 1rem;
-  position: relative;
-}
-
-.cardInfo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: relative;
-}
-
-.cardTopRight {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  display: flex; /* обовʼязково для flex */
-  flex-direction: row; /* елементи в ряд */
-  align-items: center; /* вертикальне вирівнювання */
-  gap: 0.5rem; /* відстань між елементами */
-  white-space: nowrap; /* забороняє перенос рядка */
-}
-
-.cardTopRight p {
-  margin: 0;
-  font-weight: 500;
-}
-
-.cardTopRight .heartBtn {
-  margin: 0;
-}
-
-.cardActions {
-  display: flex;
-  flex-direction: column; /* зберігаємо вертикальне розташування елементів */
-  align-items: flex-start; /* вирівнюємо зліва замість центру */
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.cardActions a {
-  color: #4a90e2;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 .cardExtra {
@@ -252,23 +274,15 @@
 
 .loadMoreBtn {
   margin-top: 1.5rem;
-  padding: 0.6rem 1.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-
-  cursor: pointer;
-  transition: background 0.3s;
-
-  border-radius: 12px;
-  /* padding: 16px 48px;
-  width: 232px;
-  height: 60px; */
-  background: #f4c550;
+  padding: 16px 48px;
   font-weight: 700;
-  /* font-size: 18px; */
   line-height: 156%;
   color: #121417;
+  background: #f4c550;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 .loadMoreBtn:hover {
@@ -285,30 +299,13 @@
   transition: transform 0.2s ease;
 }
 
-.heartBtn.favorited {
-  color: #f4c550;
+.heartBtn img {
+  width: 26px;
+  height: 26px;
 }
 
 .heartBtn:active {
   transform: scale(1.3);
-}
-
-.heartAnimation {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  color: #f4c550;
-  font-size: 2rem;
-  opacity: 0;
-  animation: popHeart 0.6s forwards;
-  pointer-events: none;
-}
-
-.reviewsList {
-  list-style: none;
-  padding: 0;
-  margin-top: 0.5rem;
 }
 
 .reviewItem {
@@ -328,42 +325,15 @@
   object-fit: cover;
 }
 
-.reviewPlaceholder {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: white;
-  font-size: 1rem;
-}
-
-.readMoreLink {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
+.book_btn {
+  border-radius: 12px;
+  padding: 16px 48px;
+  width: 232px;
+  height: 60px;
+  background: #f4c550;
+  font-weight: 700;
+  line-height: 156%;
   color: #121417;
-}
-
-@keyframes popHeart {
-  0% {
-    transform: translate(-50%, -50%) scale(0.5);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.5);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -376,11 +346,7 @@
     margin-bottom: 32px;
   }
   .loadMoreBtn {
-    border-radius: 12px;
-    padding: 16px 48px;
     width: 183px;
-    height: 60px;
-    background: #f4c550;
     margin: 0 auto;
   }
 }
