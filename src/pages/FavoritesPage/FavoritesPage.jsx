@@ -1,27 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { auth } from "../../firebase/config";
-import css from "./FavoritesPage.module.css";
-
+import css from "../TeachersPage/TeachersPage.module.css";
 import TeacherModal from "../../components/TeacherModal/TeacherModal";
 import TrialLessonModal from "../../components/TrialLessonModal/TrialLessonModal";
-import {Modal} from "../../components/Modal/Modal";
+import { Modal } from "../../components/Modal/Modal";
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
-  const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [selectedTeacherForTrial, setSelectedTeacherForTrial] = useState(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  // Завантажуємо favorites з localStorage
   useEffect(() => {
+    const user = auth.currentUser;
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
+
     const saved = localStorage.getItem("favorites");
     if (saved) {
       setFavorites(JSON.parse(saved));
     }
   }, []);
 
-  // --- Видалення з обраних ---
-  const removeFromFavorites = (teacher) => {
+  const removeFavorite = (teacher) => {
     const updated = favorites.filter(
       (fav) => !(fav.name === teacher.name && fav.surname === teacher.surname)
     );
@@ -29,95 +31,72 @@ const FavoritesPage = () => {
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
-  // --- Toggle favorite ---
-  const isFavorite = (teacher) =>
-    favorites.some(
-      (fav) => fav.name === teacher.name && fav.surname === teacher.surname
+  if (showAuthModal) {
+    return (
+      <Modal onClose={() => setShowAuthModal(false)}>
+        <p>This page is available only for authorized users.</p>
+      </Modal>
     );
-
-  const toggleFavorite = (teacher) => {
-    const user = auth.currentUser;
-    if (!user) {
-      setShowAuthModal(true);
-      return;
-    }
-
-    let updated;
-    if (isFavorite(teacher)) {
-      updated = favorites.filter(
-        (fav) => !(fav.name === teacher.name && fav.surname === teacher.surname)
-      );
-    } else {
-      updated = [...favorites, teacher];
-    }
-    setFavorites(updated);
-    localStorage.setItem("favorites", JSON.stringify(updated));
-  };
+  }
 
   return (
     <section className={css.teachersSection}>
-      <h1>Your Favorite Teachers</h1>
+      <h2 className={css.pageTitle}>Your Favorite Teachers</h2>
 
       {favorites.length === 0 ? (
-        <p>No favorites yet.</p>
+        <p className={css.noFavorites}>You have no favorite teachers yet.</p>
       ) : (
         <ul className={css.teacherList}>
           {favorites.map((teacher, index) => (
             <li key={index} className={css.teacherCard}>
-              <img
-                src={teacher.avatar_url}
-                alt={`${teacher.name} ${teacher.surname}`}
-              />
-              <h2>
-                {teacher.name} {teacher.surname}
-              </h2>
-              <p>Languages: {teacher.languages.join(", ")}</p>
-              <p>Levels: {teacher.levels.join(", ")}</p>
-              <p>Price: ${teacher.price_per_hour}</p>
-              <p>Rating: {teacher.rating}⭐</p>
+              <div className={css.cardTop}>
+                <img
+                  src={teacher.avatar_url}
+                  alt={`${teacher.name} ${teacher.surname}`}
+                />
+                <div className={css.cardInfo}>
+                  <h2>
+                    {teacher.name} {teacher.surname}
+                  </h2>
 
-              <button onClick={() => setSelectedTeacherForTrial(teacher)}>
-                Book trial lesson
-              </button>
+                  <div className={css.cardTopRight}>
+                    <p>
+                      <strong>Price/ 1 hour:</strong> ${teacher.price_per_hour}
+                    </p>
+                    <p>
+                      <strong>Rating:</strong> ⭐{teacher.rating}
+                    </p>
+                    <button
+                      onClick={() => removeFavorite(teacher)}
+                      className={`${css.heartBtn} ${css.favorited}`}
+                    >
+                      💔 Remove
+                    </button>
+                  </div>
 
-              <button onClick={() => setSelectedTeacher(teacher)}>
-                Read more
-              </button>
+                  <p>
+                    <strong>Speaks:</strong> {teacher.languages.join(", ")}
+                  </p>
+                  <p>{teacher.lesson_info}</p>
 
-              <button
-                onClick={() => toggleFavorite(teacher)}
-                className={css.heartBtn}
-                style={{ color: isFavorite(teacher) ? "#f4c550" : "#000" }}
-              >
-                ❤️
-              </button>
-
-              <button onClick={() => removeFromFavorites(teacher)}>
-                💔 Remove
-              </button>
+                  <button
+                    className={css.book_btn}
+                    onClick={() => setSelectedTeacherForTrial(teacher)}
+                  >
+                    Book trial lesson
+                  </button>
+                </div>
+              </div>
             </li>
           ))}
         </ul>
       )}
 
-      {/* Модальні вікна */}
-      {selectedTeacher && (
-        <TeacherModal
-          teacher={selectedTeacher}
-          onClose={() => setSelectedTeacher(null)}
-        />
-      )}
       {selectedTeacherForTrial && (
         <TrialLessonModal
           teacher={selectedTeacherForTrial}
           onClose={() => setSelectedTeacherForTrial(null)}
         />
-      )}
-
-      {showAuthModal && (
-        <Modal onClose={() => setShowAuthModal(false)}>
-          <p>This feature is available only for authorized users.</p>
-        </Modal>
       )}
     </section>
   );

@@ -20,14 +20,8 @@ export default function App() {
           <Route path="/teachers" element={<TeachersPage />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route
-            path="/favorites"
-            element={
-              <PrivateRoute>
-                <FavoritesPage />
-              </PrivateRoute>
-            }
-          />
+
+          <Route path="/favorites" element={<FavoritesPage />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

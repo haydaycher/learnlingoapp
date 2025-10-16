@@ -16,27 +16,68 @@
   align-items: flex-start;
 }
 .filters p {
-  margin-bottom: 4px; /* відстань між назвою і селектом */
+  margin-bottom: 8px; /* відстань між назвою і селектом */
   font-weight: 600;
 }
 
 .filters select {
-  width: 100%;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  /* width: 100%; */
+  border: none;
+  color: #121417;
+  background-color: #fff;
+  cursor: pointer;
+
+  border-radius: 14px;
+  padding: 14px 18px;
+  /* width: 221px; */
+  /* height: 48px; */
+  outline: none;
+  appearance: none; /* прибрати стандартну стрілку */
+  background-image: url("/public/chevron-down.svg"); /* твоя іконка */
+  background-repeat: no-repeat;
+  background-size: 20px 20px; /* розмір стрілки */
+  background-position: right 18px center; /* позиція всередині інпута */
+  cursor: pointer;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 18px;
   line-height: 111%;
   color: #121417;
-  background-color: #fff;
-  cursor: pointer;
+}
+
+/* Конкретна ширина для кожного селекта */
+.languageSelect {
+  width: 221px;
+}
+
+.levelSelect {
+  width: 198px;
+}
+
+.priceSelect {
+  width: 124px;
 }
 
 .filterBlock {
   display: flex;
   flex-direction: column;
+}
+.priceSelectWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dollar {
+  position: absolute;
+  right: 50%; /* зміщено від правого краю */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #121417;
 }
 
 .teachersPage_p {
@@ -52,6 +93,7 @@
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
+  margin: 0;
   max-width: 1200px;
 }
 
@@ -124,10 +166,11 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  /* display: flex; */
-  flex-direction: row;
-  align-items: flex-end;
-  gap: 0.3rem;
+  display: flex; /* обовʼязково для flex */
+  flex-direction: row; /* елементи в ряд */
+  align-items: center; /* вертикальне вирівнювання */
+  gap: 0.5rem; /* відстань між елементами */
+  white-space: nowrap; /* забороняє перенос рядка */
 }
 
 .cardTopRight p {
@@ -328,5 +371,16 @@
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+  .filters {
+    margin-bottom: 32px;
+  }
+  .loadMoreBtn {
+    border-radius: 12px;
+    padding: 16px 48px;
+    width: 183px;
+    height: 60px;
+    background: #f4c550;
+    margin: 0 auto;
   }
 }

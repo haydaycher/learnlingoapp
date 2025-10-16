@@ -95,6 +95,7 @@ const TeachersPage = () => {
         <div className={css.filterBlock}>
           <p className={css.teachersPage_p}>Languages</p>
           <select
+            className={css.languageSelect}
             value={selectedLanguage}
             onChange={(e) => setSelectedLanguage(e.target.value)}
           >
@@ -113,6 +114,7 @@ const TeachersPage = () => {
         <div className={css.filterBlock}>
           <p className={css.teachersPage_p}>Level of knowledge</p>
           <select
+            className={css.levelSelect}
             value={selectedLevel}
             onChange={(e) => setSelectedLevel(e.target.value)}
           >
@@ -128,15 +130,20 @@ const TeachersPage = () => {
 
         <div className={css.filterBlock}>
           <p className={css.teachersPage_p}>Price</p>
-          <select
-            value={selectedPrice}
-            onChange={(e) => setSelectedPrice(e.target.value)}
-          >
-            <option value="">All Prices</option>
-            <option value="25">до $25</option>
-            <option value="30">до $30</option>
-            <option value="35">до $35</option>
-          </select>
+          <div className={css.priceSelectWrapper}>
+            <select
+              className={css.priceSelect}
+              value={selectedPrice}
+              onChange={(e) => setSelectedPrice(e.target.value)}
+            >
+              <option value="">0</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+            </select>
+            <span className={css.dollar}>$</span>
+          </div>
         </div>
       </div>
 
