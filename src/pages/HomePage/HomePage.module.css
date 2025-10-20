@@ -113,7 +113,9 @@
 }
 
 .decorIcon {
-  position: static;
+  position: absolute;
+  top: 10px;
+  left: 20px;
   margin: 10px auto 0 auto;
   width: 48px;
   height: 48px;
@@ -141,6 +143,11 @@
 
   .home_title {
     font-size: 28px;
+  }
+
+  .decorIcon {
+    top: 40px;
+    left: 60px;
   }
 
   .highlighted {

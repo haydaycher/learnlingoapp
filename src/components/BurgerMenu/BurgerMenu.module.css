@@ -4,12 +4,13 @@
 }
 
 /* закріплений бургер-хрестик */
+
 .hamburgerMenu {
   width: 30px;
   height: 30px;
   position: fixed;
-  top: 40px;
-  right: 40px;
+  top: 27px;
+  right: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,10 +143,20 @@
     transform: translateX(0);
   }
 }
+@media screen and (min-width: 768px) {
+  .hamburgerMenu {
+    top: 35px;
+    right: 55px;
+  }
+}
 
 /* ховати бургер у гостей на десктопі */
 @media screen and (min-width: 1158px) {
   .navigationBlock.guest {
     display: none;
+  }
+  .hamburgerMenu {
+    top: 40px;
+    right: 40px;
   }
 }
