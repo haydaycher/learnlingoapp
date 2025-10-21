@@ -224,44 +224,74 @@ const TeachersPage = () => {
               </div>
 
               <div className={css.cardInfo}>
+                <p>
+                  <strong>Languages</strong>
+                </p>
                 <h2>
                   {teacher.name} {teacher.surname}
                 </h2>
 
                 {/* Top right block */}
+
                 <div className={css.cardTopRight}>
-                  <p>
-                    <strong>Lessons online:</strong>
-                  </p>
-                  <p>
-                    <strong>Lessons done:</strong> ${teacher.price_per_hour}
-                  </p>
-                  <p>
-                    ⭐<strong>Rating:</strong> {teacher.rating}
-                  </p>
-                  <p>
-                    <strong>Price/1 hour:</strong> ${teacher.price_per_hour}
-                  </p>
-                  <button
-                    onClick={() => toggleFavorite(teacher)}
-                    className={css.heartBtn}
-                  >
-                    <img
-                      src={
-                        isFavorite(teacher) ? "/heart-hover.svg" : "/heart.svg"
-                      }
-                      alt="favorite"
-                      width={26}
-                      height={26}
-                    />
-                  </button>
+                  <div className={css.cardStats}>
+                    <p>
+                      <img
+                        src="/book-open.svg"
+                        alt="book-open"
+                        className={css.book_open}
+                      />
+                      <strong>Lessons online</strong>
+                    </p>
+                    <span className={css.divider}>|</span>
+                    <p>
+                      <strong>Lessons done:</strong> {teacher.lessons_done}
+                    </p>
+                    <span className={css.divider}>|</span>
+                    <p>
+                      <img
+                        src="/star-rate.svg"
+                        alt="star-rate"
+                        className={css.book_open}
+                      />
+                      <strong>Rating:</strong> {teacher.rating}
+                    </p>
+                    <span className={css.divider}>|</span>
+                    <p>
+                      <strong>Price/1 hour:</strong> ${teacher.price_per_hour}
+                    </p>
+                  </div>
+
+                  <div className={css.cardFav}>
+                    <button
+                      onClick={() => toggleFavorite(teacher)}
+                      className={css.heartBtn}
+                    >
+                      <img
+                        src={
+                          isFavorite(teacher)
+                            ? "/heart-hover.svg"
+                            : "/heart.svg"
+                        }
+                        alt="favorite"
+                        width={26}
+                        height={26}
+                      />
+                    </button>
+                  </div>
                 </div>
 
                 <p>
                   <strong>Speaks:</strong> {teacher.languages.join(", ")}
                 </p>
-                <h4>Conditions:</h4>
-                <p>{teacher.lesson_info}</p>
+                <p>
+                  <strong>Lesson info:</strong>
+                  {teacher.lesson_info}
+                </p>
+                <p>
+                  <strong>Conditions:</strong>
+                  {teacher.conditions}
+                </p>
 
                 <div className={css.cardActions}>
                   <span
