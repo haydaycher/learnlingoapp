@@ -198,18 +198,19 @@ const TeachersPage = () => {
                 className={css.avatarWrapper}
                 style={{ position: "relative", width: 96, height: 96 }}
               >
-                <img
-                  src={teacher.avatar_url}
-                  alt={`${teacher.name} ${teacher.surname}`}
-                  className={css.teacherAvatar}
-                  style={{ width: "100%", height: "100%", borderRadius: "50%" }}
-                />
+                <div className={css.avatarOuter}>
+                  <img
+                    src={teacher.avatar_url}
+                    alt={`${teacher.name} ${teacher.surname}`}
+                    className={css.teacherAvatar}
+                  />
+                </div>
+
                 <div
                   className={css.statusDotWrapper}
                   style={{
                     position: "absolute",
-                    top: 0,
-                    right: 0,
+
                     width: 12,
                     height: 12,
                   }}
@@ -230,7 +231,7 @@ const TeachersPage = () => {
                 {/* Top right block */}
                 <div className={css.cardTopRight}>
                   <p>
-                    <strong>Lessons online:</strong> ${teacher.price_per_hour}
+                    <strong>Lessons online:</strong>
                   </p>
                   <p>
                     <strong>Lessons done:</strong> ${teacher.price_per_hour}
