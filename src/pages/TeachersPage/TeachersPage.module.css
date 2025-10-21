@@ -140,6 +140,12 @@
   padding: 12px;
   box-sizing: border-box;
 }
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 
 .teacherAvatar {
   width: 96px;
@@ -160,7 +166,7 @@
 
 .cardTop {
   display: flex;
-  gap: 1rem;
+  gap: 48px;
   position: relative;
 }
 
@@ -172,14 +178,15 @@
   align-items: flex-start;
   position: relative;
 }
+.cardInfo p.languages_p {
+  margin-bottom: 8px; /* відстань між Languages і ім'ям */
+}
 
 .cardTopRight {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-left: auto;
 }
 
 .cardStats {
@@ -207,11 +214,23 @@
   align-items: center;
   justify-content: center;
 }
+.priceValue {
+  color: #38cd3e; /* яскраво-зелений колір, можна змінити під свій дизайн */
+  font-weight: 500; /* опційно, щоб цифра виділялась */
+}
+.languages_p {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+  margin-bottom: 8px; /* ✅ додає саме цей відступ */
+}
 
-.cardTopRight p {
+/* .cardTopRight p {
   margin: 0;
   font-weight: 500;
-}
+} */
 
 .cardTopRight .heartBtn {
   margin: 0;
@@ -229,6 +248,13 @@
   height: 16px;
   margin-right: 4px;
 }
+.speaksList {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sectionTitle {
+  text-underline-offset: 3px;
+}
 
 .readMoreLink {
   font-family: var(--font-family);
@@ -244,6 +270,7 @@
   list-style: none;
   padding: 0;
   margin-top: 32px;
+  margin-bottom: 32px;
   /* margin: 8px 0 16px; */
   display: flex;
   flex-wrap: wrap;
@@ -274,9 +301,10 @@
 
 .cardExtra {
   margin-top: 1rem;
+  margin-bottom: 32px;
   font-size: 0.9rem;
   color: #333;
-  border-top: 1px solid #eee;
+  /* border-top: 1px solid #eee; */
   padding-top: 0.8rem;
   animation: fadeUp 0.3s ease;
 }
@@ -285,10 +313,6 @@
   margin: 0.4rem 0;
   font-weight: 600;
   color: #222;
-}
-
-.cardExtra ul {
-  list-style: disc;
 }
 
 .cardExtra li {
@@ -358,8 +382,8 @@
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  margin-bottom: 0.8rem;
-  background: #f9f9f9;
+  margin-bottom: 32px;
+
   border-radius: 10px;
   padding: 0.6rem 0.8rem;
 }
@@ -396,13 +420,13 @@
     margin: 0 auto;
   }
 
-  .teacherCard {
+  /* .teacherCard {
     width: 1184px;
     height: 328px;
-  }
+  } */
 
-  .cardInfo {
+  /* .cardInfo {
     width: 968px;
     height: 280px;
-  }
+  } */
 }

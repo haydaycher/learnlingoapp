@@ -31,7 +31,7 @@ const prices = ["10", "20", "30", "40"];
 
 const CustomSelect = ({ value, onChange, options, isPrice, width }) => {
   const [open, setOpen] = useState(false);
-  const placeholder = options[0]; // перше в списку як плейсхолдер
+  const placeholder = options[0];
 
   const handleSelect = (option) => {
     onChange(option);
@@ -208,12 +208,7 @@ const TeachersPage = () => {
 
                 <div
                   className={css.statusDotWrapper}
-                  style={{
-                    position: "absolute",
-
-                    width: 12,
-                    height: 12,
-                  }}
+                  style={{ position: "absolute", width: 12, height: 12 }}
                 >
                   <img
                     src="/online.svg"
@@ -224,72 +219,80 @@ const TeachersPage = () => {
               </div>
 
               <div className={css.cardInfo}>
-                <p>
-                  <strong>Languages</strong>
-                </p>
+                <div className={css.cardHeader}>
+                  <p className={css.languages_p}>
+                    <strong>Languages</strong>
+                  </p>
+
+                  <div className={css.cardTopRight}>
+                    <div className={css.cardStats}>
+                      <p>
+                        <img
+                          src="/book-open.svg"
+                          alt="book-open"
+                          className={css.book_open}
+                        />
+                        <strong>Lessons online</strong>
+                      </p>
+                      <span className={css.divider}>|</span>
+                      <p>
+                        <strong>Lessons done:</strong> {teacher.lessons_done}
+                      </p>
+                      <span className={css.divider}>|</span>
+                      <p>
+                        <img
+                          src="/star-rate.svg"
+                          alt="star-rate"
+                          className={css.book_open}
+                        />
+                        <strong>Rating:</strong> {teacher.rating}
+                      </p>
+                      <span className={css.divider}>|</span>
+                      <p>
+                        <strong>Price/1 hour:</strong>{" "}
+                        <span className={css.priceValue}>
+                          {teacher.price_per_hour}$
+                        </span>
+                      </p>
+                    </div>
+
+                    <div className={css.cardFav}>
+                      <button
+                        onClick={() => toggleFavorite(teacher)}
+                        className={css.heartBtn}
+                      >
+                        <img
+                          src={
+                            isFavorite(teacher)
+                              ? "/heart-hover.svg"
+                              : "/heart.svg"
+                          }
+                          alt="favorite"
+                          width={26}
+                          height={26}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
                 <h2>
                   {teacher.name} {teacher.surname}
                 </h2>
 
-                {/* Top right block */}
-
-                <div className={css.cardTopRight}>
-                  <div className={css.cardStats}>
-                    <p>
-                      <img
-                        src="/book-open.svg"
-                        alt="book-open"
-                        className={css.book_open}
-                      />
-                      <strong>Lessons online</strong>
-                    </p>
-                    <span className={css.divider}>|</span>
-                    <p>
-                      <strong>Lessons done:</strong> {teacher.lessons_done}
-                    </p>
-                    <span className={css.divider}>|</span>
-                    <p>
-                      <img
-                        src="/star-rate.svg"
-                        alt="star-rate"
-                        className={css.book_open}
-                      />
-                      <strong>Rating:</strong> {teacher.rating}
-                    </p>
-                    <span className={css.divider}>|</span>
-                    <p>
-                      <strong>Price/1 hour:</strong> ${teacher.price_per_hour}
-                    </p>
-                  </div>
-
-                  <div className={css.cardFav}>
-                    <button
-                      onClick={() => toggleFavorite(teacher)}
-                      className={css.heartBtn}
-                    >
-                      <img
-                        src={
-                          isFavorite(teacher)
-                            ? "/heart-hover.svg"
-                            : "/heart.svg"
-                        }
-                        alt="favorite"
-                        width={26}
-                        height={26}
-                      />
-                    </button>
-                  </div>
-                </div>
-
                 <p>
-                  <strong>Speaks:</strong> {teacher.languages.join(", ")}
+                  <strong>Speaks:</strong>{" "}
+                  <span className={css.speaksList}>
+                    {teacher.languages.join(", ")}
+                  </span>
                 </p>
+
                 <p>
-                  <strong>Lesson info:</strong>
+                  <strong className={css.sectionTitle}>Lesson info:</strong>
                   {teacher.lesson_info}
                 </p>
                 <p>
-                  <strong>Conditions:</strong>
+                  <strong className={css.sectionTitle}>Conditions:</strong>
                   {teacher.conditions}
                 </p>
 
@@ -302,7 +305,75 @@ const TeachersPage = () => {
                       ? "Hide details"
                       : "Read more"}
                   </span>
+                </div>
 
+                {expandedCards.includes(index) ? (
+                  <div className={css.cardExtra}>
+                    <p>{teacher.experience}</p>
+
+                    {teacher.reviews && teacher.reviews.length > 0 ? (
+                      <ul>
+                        {teacher.reviews.map((rev, i) => (
+                          <li key={i} className={css.reviewItem}>
+                            {rev.reviewer_avatar && (
+                              <div className={css.avatarWrapper}>
+                                <img
+                                  src={teacher.avatar_url}
+                                  alt={`${teacher.name} ${teacher.surname}`}
+                                  className={css.teacherAvatar}
+                                  width={96}
+                                  height={96}
+                                />
+                                <div className={css.statusDotWrapper}>
+                                  <img
+                                    src="/online.svg"
+                                    alt="online"
+                                    width={12}
+                                    height={12}
+                                  />
+                                </div>
+                              </div>
+                            )}
+                            <div>
+                              <strong>{rev.reviewer_name}</strong>
+                              {rev.reviewer_rating}
+                              <img
+                                src="/star-rate.svg"
+                                alt="star-rate"
+                                className={css.book_open}
+                              />
+                              <p>{rev.comment}</p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>No reviews yet.</p>
+                    )}
+
+                    {/* Рівні під cardExtra */}
+                    <ul className={css.levelList}>
+                      {teacher.levels.map((level, i) => (
+                        <li
+                          key={i}
+                          className={`${css.levelItem} ${
+                            level === selectedLevel ? css.activeLevel : ""
+                          }`}
+                        >
+                          {level}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <button
+                      className={css.book_btn}
+                      onClick={() => setSelectedTeacherForTrial(teacher)}
+                    >
+                      Book trial lesson
+                    </button>
+                  </div>
+                ) : (
+                  // Якщо картка не розгорнута — рівні під "Read more"
                   <ul className={css.levelList}>
                     {teacher.levels.map((level, i) => (
                       <li
@@ -315,57 +386,9 @@ const TeachersPage = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
+                )}
               </div>
             </div>
-
-            {expandedCards.includes(index) && (
-              <div className={css.cardExtra}>
-                <p>{teacher.experience}</p>
-
-                {teacher.reviews && teacher.reviews.length > 0 ? (
-                  <ul>
-                    {teacher.reviews.map((rev, i) => (
-                      <li key={i} className={css.reviewItem}>
-                        {rev.reviewer_avatar && (
-                          <div className={css.avatarWrapper}>
-                            <img
-                              src={teacher.avatar_url}
-                              alt={`${teacher.name} ${teacher.surname}`}
-                              className={css.teacherAvatar}
-                              width={96}
-                              height={96}
-                            />
-                            <div className={css.statusDotWrapper}>
-                              <img
-                                src="/online.svg"
-                                alt="online"
-                                width={12}
-                                height={12}
-                              />
-                            </div>
-                          </div>
-                        )}
-                        <div>
-                          <strong>{rev.reviewer_name}</strong> (
-                          {rev.reviewer_rating}⭐):
-                          <p>{rev.comment}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>No reviews yet.</p>
-                )}
-
-                <button
-                  className={css.book_btn}
-                  onClick={() => setSelectedTeacherForTrial(teacher)}
-                >
-                  Book trial lesson
-                </button>
-              </div>
-            )}
           </li>
         ))}
       </ul>
