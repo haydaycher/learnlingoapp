@@ -1,23 +1,43 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
 .formContainer {
+  position: relative;
   background: #fff;
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   font-family: "Inter", sans-serif;
 }
 
-.formContainer h2 {
-  text-align: start;
-  margin-bottom: 1rem;
-  color: #2b2b2b;
-  font-size: 1.5rem;
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.closeBtn img {
+  width: 20px;
+  height: 20px;
 }
 
 .formContainer label {
@@ -43,7 +63,7 @@
   box-shadow: 0 0 0 2px rgba(244, 197, 80, 0.3);
 }
 
-.formContainer button {
+.formContainer .submitBtn {
   background-color: #f4c550;
   color: #2b2b2b;
   border: none;
@@ -55,7 +75,7 @@
   transition: background-color 0.25s, transform 0.15s;
 }
 
-.formContainer button:hover {
+.formContainer .submitBtn:hover {
   background-color: #e6b93e;
   transform: translateY(-1px);
 }

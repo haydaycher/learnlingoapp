@@ -44,8 +44,8 @@ const TrialLessonModal = ({ teacher, onClose }) => {
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
-        <button className={styles.close} onClick={onClose}>
-          ×
+        <button type="button" className={styles.closeBtn} onClick={onClose}>
+          <img src="/x.svg" alt="close" />
         </button>
 
         <h2>

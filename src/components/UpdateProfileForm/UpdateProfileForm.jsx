@@ -1,11 +1,10 @@
 // src/components/UpdateProfileForm.jsx
 import { useState } from "react";
 import { updateProfile, updatePassword } from "firebase/auth";
-import { auth } from "../../firebase/config";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import css from "./UpdateProfileForm.module.css";
 
-export const UpdateProfileForm = () => {
+export const UpdateProfileForm = ({ onClose }) => {
   const { currentUser } = useAuth();
   const [name, setName] = useState(currentUser?.displayName || "");
   const [newPassword, setNewPassword] = useState("");
@@ -27,32 +26,48 @@ export const UpdateProfileForm = () => {
   };
 
   return (
-    <form onSubmit={handleUpdate} className={css.formContainer}>
-      <h2>Update Profile</h2>
+    <div
+      className={css.modalOverlay}
+      onClick={(e) => {
+        // Закриваємо модалку тільки при кліку на фон
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <form onSubmit={handleUpdate} className={css.formContainer}>
+        <button type="button" className={css.closeBtn} onClick={onClose}>
+          <img src="/x.svg" alt="close" />
+        </button>
 
-      <label>
-        Name:
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          autoComplete="off"
-        />
-      </label>
+        <h2>Update Profile</h2>
 
-      <label>
-        New Password:
-        <input
-          type="password"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          autoComplete="new-password"
-        />
-      </label>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            autoComplete="off"
+          />
+        </label>
 
-      <button type="submit">Save changes</button>
+        <label>
+          New Password:
+          <input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            autoComplete="new-password"
+          />
+        </label>
 
-      {message && <p>{message}</p>}
-    </form>
+        <button type="submit" className={css.submitBtn}>
+          Save changes
+        </button>
+
+        {message && <p>{message}</p>}
+      </form>
+    </div>
   );
 };
