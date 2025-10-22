@@ -29,7 +29,7 @@ const levels = [
 
 const prices = ["10", "20", "30", "40"];
 
-const CustomSelect = ({ value, onChange, options, isPrice, width }) => {
+const CustomSelect = ({ value, onChange, options, isPrice }) => {
   const [open, setOpen] = useState(false);
   const placeholder = options[0];
 
@@ -39,12 +39,8 @@ const CustomSelect = ({ value, onChange, options, isPrice, width }) => {
   };
 
   return (
-    <div className={css.customSelectWrapper} style={{ width }}>
-      <div
-        className={css.customSelectDisplay}
-        onClick={() => setOpen(!open)}
-        style={{ width }}
-      >
+    <div className={css.customSelectWrapper}>
+      <div className={css.customSelectDisplay} onClick={() => setOpen(!open)}>
         {isPrice ? (
           <>
             {value || placeholder}
@@ -194,10 +190,7 @@ const TeachersPage = () => {
         {visibleTeachers.map((teacher, index) => (
           <li key={index} className={css.teacherCard}>
             <div className={css.cardTop}>
-              <div
-                className={css.avatarWrapper}
-                style={{ position: "relative", width: 96, height: 96 }}
-              >
+              <div className={css.avatarWrapper}>
                 <div className={css.avatarOuter}>
                   <img
                     src={teacher.avatar_url}
@@ -206,23 +199,21 @@ const TeachersPage = () => {
                   />
                 </div>
 
-                <div
-                  className={css.statusDotWrapper}
-                  style={{ position: "absolute", width: 12, height: 12 }}
-                >
-                  <img
-                    src="/online.svg"
-                    alt="online"
-                    style={{ width: "100%", height: "100%" }}
-                  />
+                <div className={css.statusDotWrapper}>
+                  <img src="/online.svg" alt="online" />
                 </div>
               </div>
 
               <div className={css.cardInfo}>
                 <div className={css.cardHeader}>
-                  <p className={css.languages_p}>
-                    <strong>Languages</strong>
-                  </p>
+                  <div className={css.nameBlock}>
+                    <p className={css.languages_p}>
+                      {teacher.languages.join(", ")}
+                    </p>
+                    <h2 className={css.teacherName}>
+                      {teacher.name} {teacher.surname}
+                    </h2>
+                  </div>
 
                   <div className={css.cardTopRight}>
                     <div className={css.cardStats}>
@@ -276,10 +267,6 @@ const TeachersPage = () => {
                   </div>
                 </div>
 
-                <h2>
-                  {teacher.name} {teacher.surname}
-                </h2>
-
                 <p>
                   <strong>Speaks:</strong>{" "}
                   <span className={css.speaksList}>
@@ -325,12 +312,7 @@ const TeachersPage = () => {
                                   height={96}
                                 />
                                 <div className={css.statusDotWrapper}>
-                                  <img
-                                    src="/online.svg"
-                                    alt="online"
-                                    width={12}
-                                    height={12}
-                                  />
+                                  <img src="/online.svg" alt="online" />
                                 </div>
                               </div>
                             )}

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth } from "../../firebase/config";
 import css from "../TeachersPage/TeachersPage.module.css";
-import TeacherModal from "../../components/TeacherModal/TeacherModal";
 import TrialLessonModal from "../../components/TrialLessonModal/TrialLessonModal";
 import { Modal } from "../../components/Modal/Modal";
 
@@ -16,11 +15,8 @@ const FavoritesPage = () => {
       setShowAuthModal(true);
       return;
     }
-
     const saved = localStorage.getItem("favorites");
-    if (saved) {
-      setFavorites(JSON.parse(saved));
-    }
+    if (saved) setFavorites(JSON.parse(saved));
   }, []);
 
   const removeFavorite = (teacher) => {
@@ -30,6 +26,11 @@ const FavoritesPage = () => {
     setFavorites(updated);
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
+
+  const isFavorite = (teacher) =>
+    favorites.some(
+      (fav) => fav.name === teacher.name && fav.surname === teacher.surname
+    );
 
   if (showAuthModal) {
     return (
@@ -41,8 +42,6 @@ const FavoritesPage = () => {
 
   return (
     <section className={css.teachersSection}>
-      <h2 className={css.pageTitle}>Your Favorite Teachers</h2>
-
       {favorites.length === 0 ? (
         <p className={css.noFavorites}>You have no favorite teachers yet.</p>
       ) : (
@@ -50,34 +49,101 @@ const FavoritesPage = () => {
           {favorites.map((teacher, index) => (
             <li key={index} className={css.teacherCard}>
               <div className={css.cardTop}>
-                <img
-                  src={teacher.avatar_url}
-                  alt={`${teacher.name} ${teacher.surname}`}
-                />
-                <div className={css.cardInfo}>
-                  <h2>
-                    {teacher.name} {teacher.surname}
-                  </h2>
+                <div className={css.avatarWrapper}>
+                  <div className={css.statusDotWrapper}>
+                    <img src="/online.svg" alt="online" />
+                  </div>
+                  <div className={css.avatarOuter}>
+                    <img
+                      src={teacher.avatar_url}
+                      alt={`${teacher.name} ${teacher.surname}`}
+                      className={css.teacherAvatar}
+                    />
+                  </div>
+                </div>
 
-                  <div className={css.cardTopRight}>
-                    <p>
-                      <strong>Price/ 1 hour:</strong> ${teacher.price_per_hour}
-                    </p>
-                    <p>
-                      <strong>Rating:</strong> ⭐{teacher.rating}
-                    </p>
-                    <button
-                      onClick={() => removeFavorite(teacher)}
-                      className={`${css.heartBtn} ${css.favorited}`}
-                    >
-                      💔 Remove
-                    </button>
+                <div className={css.cardInfo}>
+                  <div className={css.cardHeader}>
+                    <div className={css.nameBlock}>
+                      <p className={css.languages_p}>
+                        {teacher.languages.join(", ")}
+                      </p>
+                      <h2 className={css.teacherName}>
+                        {teacher.name} {teacher.surname}
+                      </h2>
+                    </div>
+
+                    <div className={css.cardTopRight}>
+                      <div className={css.cardStats}>
+                        <p>
+                          <img
+                            src="/book-open.svg"
+                            alt="book-open"
+                            className={css.book_open}
+                          />
+                          <strong>Lessons done:</strong> {teacher.lessons_done}
+                        </p>
+                        <p>
+                          <img
+                            src="/star-rate.svg"
+                            alt="star-rate"
+                            className={css.book_open}
+                          />
+                          <strong>Rating:</strong> {teacher.rating}
+                        </p>
+                        <p>
+                          <strong>Price/1 hour:</strong>{" "}
+                          <span className={css.priceValue}>
+                            {teacher.price_per_hour}$
+                          </span>
+                        </p>
+                      </div>
+                      <div className={css.cardFav}>
+                        <button
+                          onClick={() => removeFavorite(teacher)}
+                          className={css.heartBtn}
+                        >
+                          <img
+                            src={
+                              isFavorite(teacher)
+                                ? "/heart-hover.svg"
+                                : "/heart.svg"
+                            }
+                            alt="favorite"
+                            width={26}
+                            height={26}
+                          />
+                        </button>
+                      </div>
+                    </div>
                   </div>
 
                   <p>
-                    <strong>Speaks:</strong> {teacher.languages.join(", ")}
+                    <strong>Speaks:</strong>{" "}
+                    <span className={css.speaksList}>
+                      {teacher.languages.join(", ")}
+                    </span>
                   </p>
-                  <p>{teacher.lesson_info}</p>
+
+                  <p>
+                    <strong className={css.sectionTitle}>Lesson info:</strong>{" "}
+                    {teacher.lesson_info}
+                  </p>
+
+                  {teacher.conditions && (
+                    <p>
+                      <strong className={css.sectionTitle}>Conditions:</strong>{" "}
+                      {teacher.conditions}
+                    </p>
+                  )}
+
+                  <ul className={css.levelList}>
+                    {teacher.levels?.map((level, i) => (
+                      <li key={i} className={css.levelItem}>
+                        {level}
+                      </li>
+                    ))}
+                  </ul>
 
                   <button
                     className={css.book_btn}
