@@ -26,7 +26,21 @@ body {
   color: rgba(18, 20, 23, 0.8);
   margin-bottom: 40px;
 }
+/* Кнопка закриття */
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
 
+.closeBtn img {
+  width: 20px;
+  height: 20px;
+}
 .login_form {
   overflow: hidden;
   background-color: white;

@@ -4,7 +4,7 @@ import { auth } from "../../firebase/config";
 import css from "./SignUpForm.module.css";
 import { Eye, EyeOff } from "lucide-react";
 
-export const SignUpForm = () => {
+export const SignUpForm = (onClose) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,6 +32,9 @@ export const SignUpForm = () => {
 
   return (
     <form autoComplete="off" className={css.sign_form} onSubmit={handleSignUp}>
+      <button type="button" className={css.closeBtn} onClick={onClose}>
+        <img src="/x.svg" alt="close" />
+      </button>
       <h1 className={css.sign_h}>Registration</h1>
       <p className={css.sign_p}>
         Thank you for your interest in our platform! In order to register, we

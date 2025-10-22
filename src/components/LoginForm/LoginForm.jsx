@@ -5,7 +5,7 @@ import { auth } from "../../firebase/config";
 import css from "./LoginForm.module.css";
 import { Eye, EyeOff } from "lucide-react";
 
-export const LoginForm = () => {
+export const LoginForm = (onClose) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +22,9 @@ export const LoginForm = () => {
 
   return (
     <form className={css.login_form} onSubmit={handleLogin}>
+      <button type="button" className={css.closeBtn} onClick={onClose}>
+        <img src="/x.svg" alt="close" />
+      </button>
       <h1 className={css.login_h}>Log In</h1>
       <p className={css.login_p}>
         Welcome back! Please enter your credentials to access your account and

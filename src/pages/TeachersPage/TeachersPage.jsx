@@ -115,10 +115,13 @@ const TeachersPage = () => {
     setItemsToShow(4);
   }, [selectedLanguage, selectedLevel, selectedPrice, allTeachers]);
 
-  const isFavorite = (teacher) =>
-    favorites.some(
+  const isFavorite = (teacher) => {
+    const user = auth.currentUser;
+    if (!user) return false;
+    return favorites.some(
       (fav) => fav.name === teacher.name && fav.surname === teacher.surname
     );
+  };
 
   const toggleFavorite = (teacher) => {
     const user = auth.currentUser;
@@ -254,7 +257,7 @@ const TeachersPage = () => {
                       >
                         <img
                           src={
-                            isFavorite(teacher)
+                            auth.currentUser && isFavorite(teacher)
                               ? "/heart-hover.svg"
                               : "/heart.svg"
                           }
@@ -333,7 +336,6 @@ const TeachersPage = () => {
                       <p>No reviews yet.</p>
                     )}
 
-                    {/* Рівні під cardExtra */}
                     <ul className={css.levelList}>
                       {teacher.levels.map((level, i) => (
                         <li
@@ -355,7 +357,6 @@ const TeachersPage = () => {
                     </button>
                   </div>
                 ) : (
-                  // Якщо картка не розгорнута — рівні під "Read more"
                   <ul className={css.levelList}>
                     {teacher.levels.map((level, i) => (
                       <li
