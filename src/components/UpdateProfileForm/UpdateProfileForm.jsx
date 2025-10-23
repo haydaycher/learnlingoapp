@@ -20,6 +20,8 @@ export const UpdateProfileForm = ({ onClose }) => {
         await updatePassword(currentUser, newPassword);
       }
       setMessage("Profile updated successfully ✅");
+      // після оновлення профілю можна закрити модалку:
+      // onClose();
     } catch (err) {
       setMessage(err.message);
     }
@@ -29,13 +31,14 @@ export const UpdateProfileForm = ({ onClose }) => {
     <div
       className={css.modalOverlay}
       onClick={(e) => {
-        // Закриваємо модалку тільки при кліку на фон
-        if (e.target === e.currentTarget) {
-          onClose();
-        }
+        if (e.target === e.currentTarget) onClose();
       }}
     >
-      <form onSubmit={handleUpdate} className={css.formContainer}>
+      <form
+        onSubmit={handleUpdate}
+        className={css.formContainer}
+        onClick={(e) => e.stopPropagation()} // щоб клік усередині форми не закривав модалку
+      >
         <button type="button" className={css.closeBtn} onClick={onClose}>
           <img src="/x.svg" alt="close" />
         </button>
