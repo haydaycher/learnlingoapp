@@ -29,18 +29,31 @@ body {
 /* Кнопка закриття */
 .closeBtn {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: transparent;
+  top: 12px; /* відступ від верхнього краю модалки */
+  right: 12px; /* відступ від правого краю модалки */
+  width: 32px; /* розмір кнопки */
+  height: 32px;
+  background: rgba(0, 0, 0, 0.05); /* легкий фон для кращої видимості */
   border: none;
+  border-radius: 50%; /* кругла кнопка */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  padding: 4px;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .closeBtn img {
-  width: 20px;
-  height: 20px;
+  width: 16px; /* значок X всередині кнопки */
+  height: 16px;
+  pointer-events: none; /* щоб клік не "зупинявся" на картинці */
 }
+
 .login_form {
   overflow: hidden;
   background-color: white;
