@@ -97,7 +97,7 @@
 }
 
 .reasonSection input[type="checkbox"] {
-  appearance: none;
+  /* appearance: none; */
   -webkit-appearance: none;
   width: 20px;
   height: 20px;

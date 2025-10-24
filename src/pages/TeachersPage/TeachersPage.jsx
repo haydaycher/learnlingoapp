@@ -312,29 +312,43 @@ const TeachersPage = () => {
                       <ul>
                         {teacher.reviews.map((rev, i) => (
                           <li key={i} className={css.reviewItem}>
-                            {rev.reviewer_avatar && (
-                              <div className={css.avatarWrapper}>
-                                <img
-                                  src={teacher.avatar_url}
-                                  alt={`${teacher.name} ${teacher.surname}`}
-                                  className={css.teacherAvatar}
-                                  width={96}
-                                  height={96}
-                                />
-                                <div className={css.statusDotWrapper}>
-                                  <img src="/online.svg" alt="online" />
+                            <div className={css.reviewTop}>
+                              {/* Ліва колонка: аватар */}
+                              <div className={css.reviewAvatarWrapper}>
+                                {rev.reviewer_avatar ? (
+                                  <img
+                                    src={rev.reviewer_avatar}
+                                    alt={rev.reviewer_name}
+                                    className={css.reviewAvatar}
+                                  />
+                                ) : (
+                                  <div className={css.reviewAvatarFallback}>
+                                    {rev.reviewer_name?.[0].toUpperCase()}
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Права колонка: блок з ім'ям + рейтинг та коментар */}
+                              <div className={css.reviewRightBlock}>
+                                {/* Ім’я + рейтинг */}
+                                <div className={css.reviewHeader}>
+                                  <strong className={css.reviewName}>
+                                    {rev.reviewer_name}
+                                  </strong>
+                                  <span className={css.reviewerRating}>
+                                    <img
+                                      src="/star-rate.svg"
+                                      alt="rating"
+                                      className={css.starIcon}
+                                    />
+                                    {rev.reviewer_rating}
+                                  </span>
                                 </div>
                               </div>
-                            )}
-                            <div>
-                              <strong>{rev.reviewer_name}</strong>
-                              {rev.reviewer_rating}
-                              <img
-                                src="/star-rate.svg"
-                                alt="star-rate"
-                                className={css.book_open}
-                              />
-                              <p>{rev.comment}</p>
+                            </div>
+                            {/* Коментар */}
+                            <div className={css.reviewCommentWrapper}>
+                              <p className={css.reviewComment}>{rev.comment}</p>
                             </div>
                           </li>
                         ))}

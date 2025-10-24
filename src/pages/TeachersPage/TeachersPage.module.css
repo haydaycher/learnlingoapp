@@ -1,10 +1,10 @@
 .teachersSection,
 .favoritesSection {
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  margin-top: 15px;
 }
 
 .filters {
@@ -110,7 +110,6 @@
   gap: 1.5rem;
   width: 100%;
   margin: 0;
-  max-width: 1200px;
 }
 
 .teacherCard {
@@ -148,7 +147,7 @@
 }
 
 .avatarOuter {
-  /* width: 120px; */
+  width: 130px;
 
   border: 3px solid #fbe9ba;
   border-radius: 100px;
@@ -158,8 +157,8 @@
   padding: 12px;
   box-sizing: border-box;
 }
+
 .cardHeader {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -175,8 +174,7 @@
 }
 
 .cardTop {
-  display: flex;
-  gap: 48px;
+  gap: 18px;
   position: relative;
 }
 
@@ -201,6 +199,10 @@
   align-items: center;
   gap: 0.8rem;
   flex-wrap: wrap;
+}
+.reviewTop {
+  display: flex;
+  gap: 12px;
 }
 
 .cardStats p {
@@ -310,12 +312,11 @@
 }
 
 .cardExtra {
-  margin-top: 1rem;
   margin-bottom: 32px;
   font-size: 0.9rem;
   color: #333;
   /* border-top: 1px solid #eee; */
-  padding-top: 0.8rem;
+
   animation: fadeUp 0.3s ease;
 }
 
@@ -347,7 +348,6 @@
 }
 
 .teacherCard p {
-  margin: 0.2rem 0;
   font-size: 0.9rem;
   text-align: start;
 }
@@ -388,39 +388,150 @@
   transform: scale(1.3);
 }
 
+.reviewContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .reviewItem {
   display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
   align-items: flex-start;
-  gap: 0.6rem;
-  margin-bottom: 32px;
+}
 
-  border-radius: 10px;
-  padding: 0.6rem 0.8rem;
+.reviewAvatarWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .reviewAvatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+}
+
+.reviewAvatarFallback {
+  width: 100%;
+  height: 100%;
+  background-color: #b0c4de;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-transform: uppercase;
+}
+
+.reviewHeaderWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.reviewHeader {
+  align-items: center;
+  gap: 12px;
+}
+
+.reviewName {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+}
+
+.reviewerRating {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #121417;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.starIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.reviewComment {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
 }
 
 .book_btn {
   border-radius: 12px;
   padding: 16px 48px;
-  width: 232px;
+  /* width: 232px; */
   height: 60px;
   background: #f4c550;
   font-weight: 700;
   line-height: 156%;
   color: #121417;
 }
+@media screen and (min-width: 768px) {
+  .reviewItem {
+    display: block;
+  }
+  .cardExtra {
+    margin-top: 1rem;
 
+    padding-top: 0.8rem;
+  }
+  .teachersSection,
+  .favoritesSection {
+    margin: 0;
+    padding: 2rem;
+  }
+  .filters {
+    margin-bottom: 24px;
+  }
+  .cardTop {
+    display: flex;
+    gap: 48px;
+  }
+  .teacherList {
+    gap: 2rem;
+  }
+  .teacherCard {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cardInfo {
+    margin-left: 24px;
+  }
+  .cardActions {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0;
+  }
+}
 @media screen and (min-width: 1024px) {
+  .cardHeader {
+    display: flex;
+  }
   .teacherList {
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    max-width: 1200px;
   }
   .filters {
     margin-bottom: 32px;
@@ -430,10 +541,9 @@
     margin: 0 auto;
   }
 
-  /* .teacherCard {
-    width: 1184px;
-    height: 328px;
-  } */
+  .teacherCard p {
+    margin: 0.2rem 0;
+  }
 
   /* .cardInfo {
     width: 968px;
