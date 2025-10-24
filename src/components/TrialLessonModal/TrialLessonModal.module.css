@@ -26,33 +26,49 @@
 /* Для гарантії фіксації навіть на маленьких екранах */
 .modal {
   position: relative;
-  background: white;
+  background: #fff;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 16px;
   width: 90%;
   max-width: 500px;
   box-sizing: border-box;
+  overflow: hidden; /* важливо для кнопки та анімації */
+  font-family: "Inter", sans-serif;
 }
 
-.close:hover {
-  color: #000;
-}
-/* Кнопка закриття */
 .closeBtn {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: transparent;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.05);
   border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  padding: 4px;
+  z-index: 20;
+  transition: background 0.2s;
+}
+
+.closeBtn:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .closeBtn img {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
 }
 
+.book_page_h {
+  margin: 12px;
+}
+.book_page_p {
+  margin-bottom: 20px;
+}
 .teacherName {
   font-size: 1.2rem;
   font-weight: 600;
@@ -142,17 +158,34 @@
 .teacherInfo {
   display: flex;
 
-  gap: 12px;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  gap: 14px;
+
+  margin-bottom: 40px;
+}
+.cardName_p {
+  margin-bottom: 4px;
+  margin-top: 0;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8a8a89;
+}
+.cardName_h {
+  margin-top: 0;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
 }
 
 .teacherAvatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
   object-fit: cover;
-  border: 2px solid #f4c550;
+  /* border: 2px solid #f4c550; */
 }
 
 .teacherName {

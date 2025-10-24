@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { db, auth } from "../../firebase/config";
 import css from "./TeachersPage.module.css";
+import { AlertModal } from "../../components/AlertModal/AlertModal";
 
 import TeacherModal from "../../components/TeacherModal/TeacherModal";
 import TrialLessonModal from "../../components/TrialLessonModal/TrialLessonModal";
@@ -81,12 +82,12 @@ const TeachersPage = () => {
   const [selectedTeacherForTrial, setSelectedTeacherForTrial] = useState(null);
   const [expandedCards, setExpandedCards] = useState([]);
 
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem("favorites");
     return saved ? JSON.parse(saved) : [];
   });
-
-  const [showAuthModal, setShowAuthModal] = useState(false);
 
   useEffect(() => {
     const teachersRef = ref(db, "/");
@@ -288,7 +289,13 @@ const TeachersPage = () => {
 
                 <div className={css.cardActions}>
                   <span
-                    onClick={() => toggleExpand(index)}
+                    onClick={() => {
+                      if (auth.currentUser) {
+                        toggleExpand(index);
+                      } else {
+                        setShowAuthModal(true);
+                      }
+                    }}
                     className={css.readMoreLink}
                   >
                     {expandedCards.includes(index)
@@ -396,9 +403,11 @@ const TeachersPage = () => {
       )}
 
       {showAuthModal && (
-        <Modal onClose={() => setShowAuthModal(false)}>
-          <p>This feature is available only for authorized users.</p>
-        </Modal>
+        <AlertModal
+          isOpen={showAuthModal}
+          onClose={() => setShowAuthModal(false)}
+          message="This feature is available only for authorized users."
+        />
       )}
     </section>
   );

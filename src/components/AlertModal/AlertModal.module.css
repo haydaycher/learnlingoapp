@@ -1,0 +1,19 @@
+.alertContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  text-align: center;
+}
+.alert_p {
+  margin-top: 10px;
+}
+.closeBtn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 12px;
+  background: #f4c550;
+  font-weight: 600;
+  cursor: pointer;
+}

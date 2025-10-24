@@ -41,6 +41,7 @@ export const Header = () => {
       </div>
 
       {/* Правий блок: BurgerMenu або кнопки авторизації */}
+      {/* Правий блок: BurgerMenu або кнопки авторизації */}
       {currentUser ? (
         <BurgerMenu
           currentUser={currentUser}
@@ -48,28 +49,44 @@ export const Header = () => {
           onLogout={handleLogout}
         />
       ) : (
-        <div className={css.authButtons}>
+        <>
+          {/* Мобільна кнопка для логіну */}
           <button
-            className={css.authButtonLog}
+            className={css.mobileLoginBtn}
             onClick={() => setIsLoginOpen(true)}
           >
             <img
               src="/log-in-enter.svg"
-              alt="Log In Icon"
+              alt="Log In"
               width="20"
               height="20"
               className={css.authButtonIcon}
             />
-            Log in
           </button>
 
-          <button
-            className={css.authButtonReg}
-            onClick={() => setIsSignupOpen(true)}
-          >
-            Registration
-          </button>
-        </div>
+          {/* Стандартні кнопки (ті, що були у твоєму коді) */}
+          <div className={css.authButtons}>
+            <button
+              className={css.authButtonLog}
+              onClick={() => setIsLoginOpen(true)}
+            >
+              <img
+                src="/log-in-enter.svg"
+                alt="Log In Icon"
+                width="20"
+                height="20"
+                className={css.authButtonIcon}
+              />
+              Log in
+            </button>
+            <button
+              className={css.authButtonReg}
+              onClick={() => setIsSignupOpen(true)}
+            >
+              Registration
+            </button>
+          </div>
+        </>
       )}
 
       {/* Modals */}

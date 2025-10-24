@@ -4,7 +4,7 @@ import { auth } from "../../firebase/config";
 import css from "./SignUpForm.module.css";
 import { Eye, EyeOff } from "lucide-react";
 
-export const SignUpForm = (onClose) => {
+export const SignUpForm = ({ onClose }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

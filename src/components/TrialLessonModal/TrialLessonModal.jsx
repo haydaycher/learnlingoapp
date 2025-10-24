@@ -48,10 +48,8 @@ const TrialLessonModal = ({ teacher, onClose }) => {
           <img src="/x.svg" alt="close" />
         </button>
 
-        <h2>
-          Book trial lesson with {teacher.name} {teacher.surname}
-        </h2>
-        <p>
+        <h2 className={styles.book_page_h}>Book trial lesson</h2>
+        <p className={styles.book_page_p}>
           Our experienced tutor will assess your current language level, discuss
           your learning goals, and tailor the lesson to your specific needs.
         </p>
@@ -65,8 +63,8 @@ const TrialLessonModal = ({ teacher, onClose }) => {
             />
           )}
           <div className={styles.cardInfo}>
-            <p>Your teacher</p>
-            <h3>
+            <p className={styles.cardName_p}>Your teacher</p>
+            <h3 className={styles.cardName_h}>
               {teacher.name} {teacher.surname}
             </h3>
           </div>

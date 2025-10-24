@@ -11,6 +11,65 @@
   justify-content: center;
   z-index: 999;
 }
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  position: relative;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.closeBtn img {
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+p {
+  font-size: 1rem;
+  color: #333;
+}
 
 .modal {
   background: white;

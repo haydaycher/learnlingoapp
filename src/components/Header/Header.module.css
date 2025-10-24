@@ -5,6 +5,21 @@
   position: relative;
   padding: 0 20px; /* або потрібний відступ з боків */
 }
+/* Мобільна кнопка логіну */
+.mobileLoginBtn {
+  display: none; /* за замовчуванням прихована */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Desktop версія */
+@media screen and (max-width: 767px) {
+  .authButtons {
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 /* Центруємо навігацію по всій ширині viewport */
 .navWrapper {
@@ -36,7 +51,7 @@
 .authButtons {
   display: flex;
   gap: 8px;
-
+  align-items: center;
   /* width: 166px;
   height: 48px; */
 }
@@ -151,7 +166,14 @@ nav a.active {
   .authButtons {
     display: none; /* ховаємо окремі кнопки */
   }
+  .mobileLoginBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
 
+  .burgerMenu {
+    display: none; /* ховаємо бургер на мобільних */
+  }
   .mobileMenu {
     display: block;
     position: relative;

@@ -7,8 +7,8 @@ export const Modal = ({ isOpen, onClose, children }) => {
   return (
     <div className={css.backdrop} onClick={onClose}>
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={css.close} onClick={onClose}>
-          ✖
+        <button type="button" className={css.closeBtn} onClick={onClose}>
+          <img src="/x.svg" alt="close" />
         </button>
         {children}
       </div>
