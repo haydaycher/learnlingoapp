@@ -195,16 +195,16 @@ const TeachersPage = () => {
           <li key={index} className={css.teacherCard}>
             <div className={css.cardTop}>
               <div className={css.avatarWrapper}>
-                <div className={css.avatarOuter}>
+                <div className={css.avatarWithOuter}>
                   <img
                     src={teacher.avatar_url}
                     alt={`${teacher.name} ${teacher.surname}`}
                     className={css.teacherAvatar}
                   />
-                </div>
-
-                <div className={css.statusDotWrapper}>
-                  <img src="/online.svg" alt="online" />
+                  <div className={css.statusDotWrapper}>
+                    <img src="/online.svg" alt="online" />
+                  </div>
+                  <div className={css.avatarOuter}></div>
                 </div>
               </div>
 
