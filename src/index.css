@@ -2,8 +2,13 @@
 
 :root {
   font-family: "Roboto", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+
+  /* font-weight: 400; */
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
 
   color: #121417;
   background-color: #f3f1f1;
@@ -64,6 +69,11 @@ a:visited,
 a:hover,
 a:active {
   text-decoration: none;
+}
+a:focus,
+a:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 ul,

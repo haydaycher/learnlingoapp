@@ -39,6 +39,9 @@
   align-items: center;
   gap: 12px; /* відступ між логотипом і текстом */
 }
+.leftBlock a {
+  align-items: center;
+}
 
 .username {
   font-weight: 600;

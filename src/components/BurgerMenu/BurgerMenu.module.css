@@ -8,7 +8,7 @@
 .hamburgerMenu {
   width: 30px;
   height: 30px;
-  position: fixed;
+  position: absolute;
   top: 27px;
   right: 45px;
   display: flex;

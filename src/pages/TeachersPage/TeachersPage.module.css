@@ -92,6 +92,7 @@
 }
 .nameBlock {
   display: flex;
+  margin-bottom: 15px;
   flex-direction: column;
   align-items: flex-start;
 }
@@ -168,8 +169,8 @@
 
 .statusDotWrapper {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 15px;
+  right: 20px;
   width: 14px;
   height: 14px;
   border-radius: 50%;
@@ -187,8 +188,8 @@
 }
 
 .cardHeader {
-  align-items: center;
-  justify-content: space-between;
+  align-items: start;
+
   width: 100%;
 }
 
@@ -207,16 +208,14 @@
 }
 
 .cardTopRight {
-  display: flex;
   align-items: center;
   gap: 1rem;
   margin-left: auto;
 }
 
 .cardStats {
-  display: flex;
   align-items: center;
-  gap: 0.8rem;
+
   flex-wrap: wrap;
 }
 .reviewTop {
@@ -233,6 +232,17 @@
   align-items: center;
   gap: 4px;
 }
+p {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
+}
+
+p strong.sectionTitle {
+  color: #8a8a89;
+}
 
 .divider {
   color: rgba(18, 20, 23, 0.2);
@@ -242,8 +252,8 @@
 
 .cardFav {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  /* justify-content: center; */
 }
 .priceValue {
   color: #38cd3e; /* яскраво-зелений колір, можна змінити під свій дизайн */
@@ -264,6 +274,10 @@
 } */
 
 .cardTopRight .heartBtn {
+  display: flex;
+
+  justify-content: flex-end;
+  top: -350px;
   margin: 0;
 }
 
@@ -272,7 +286,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 16px;
 }
 .book_open {
   width: 16px;
@@ -282,9 +296,11 @@
 .speaksList {
   text-decoration: underline;
   text-underline-offset: 3px;
+  color: #121417;
 }
 .sectionTitle {
   text-underline-offset: 3px;
+  color: #8a8a89;
 }
 
 .readMoreLink {
@@ -504,13 +520,17 @@
   color: #121417;
 }
 @media screen and (min-width: 768px) {
+  .cardTopRight .heartBtn {
+    top: -120px;
+  }
   .reviewItem {
     display: block;
   }
+  .nameBlock {
+    margin-bottom: 32px;
+  }
   .cardExtra {
-    margin-top: 1rem;
-
-    padding-top: 0.8rem;
+    margin-top: 16px;
   }
   .teachersSection,
   .favoritesSection {
@@ -524,6 +544,10 @@
     display: flex;
     gap: 48px;
   }
+
+  .cardTopRight {
+    display: flex;
+  }
   .teacherList {
     gap: 2rem;
   }
@@ -532,17 +556,29 @@
     align-items: center;
     justify-content: space-between;
   }
-  .cardInfo {
+  /* .cardInfo {
+  
     margin-left: 24px;
-  }
+  } */
   .cardActions {
     flex-direction: row;
     align-items: center;
     gap: 1.5rem;
-    margin-top: 0;
+  }
+  .cardStats {
+    display: flex;
+    gap: 0.8rem;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
+  .cardTopRight {
+    margin-left: 149px;
+    align-items: start;
+  }
+  .cardTopRight .heartBtn {
+    align-items: start;
+    top: 0;
+  }
   .cardHeader {
     display: flex;
   }
@@ -563,9 +599,11 @@
   .teacherCard p {
     margin: 0.2rem 0;
   }
-
-  /* .cardInfo {
+  /* .cardTop {
     width: 968px;
-    height: 280px;
   } */
+  .cardInfo {
+    width: 968px;
+    /* margin-left: 24px; */
+  }
 }

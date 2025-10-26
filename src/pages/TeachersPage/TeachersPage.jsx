@@ -244,7 +244,7 @@ const TeachersPage = () => {
                       </p>
                       <span className={css.divider}>|</span>
                       <p>
-                        <strong>Price/1 hour:</strong>{" "}
+                        <strong>Price / 1 hour:</strong>{" "}
                         <span className={css.priceValue}>
                           {teacher.price_per_hour}$
                         </span>
@@ -272,7 +272,7 @@ const TeachersPage = () => {
                 </div>
 
                 <p>
-                  <strong>Speaks:</strong>{" "}
+                  <strong className={css.sectionTitle}>Speaks:</strong>{" "}
                   <span className={css.speaksList}>
                     {teacher.languages.join(", ")}
                   </span>
