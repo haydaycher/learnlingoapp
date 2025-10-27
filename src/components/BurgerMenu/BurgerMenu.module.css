@@ -1,5 +1,7 @@
 .navigationBlock {
   position: relative;
+  top: -45px;
+  right: -45px;
   z-index: 10;
 }
 
@@ -136,15 +138,22 @@
 
 @media screen and (min-width: 768px) {
   .hamburgerMenu {
-    top: 35px;
-    right: 55px;
+    top: 30px;
+    right: 30px;
+  }
+  .navigationBlock {
+    right: -30px;
   }
 }
 
 /* ховати бургер у гостей на десктопі */
-@media screen and (min-width: 1158px) {
+@media screen and (min-width: 1280px) {
   .navigationBlock.guest {
     display: none;
+  }
+  .navigationBlock {
+    top: -50px;
+    right: -25px;
   }
   .hamburgerMenu {
     top: 40px;

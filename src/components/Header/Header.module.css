@@ -3,10 +3,11 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  padding: 0 20px; /* або потрібний відступ з боків */
+  padding: 0;
 }
 /* Мобільна кнопка логіну */
 .mobileLoginBtn {
+  padding: 0;
   display: none; /* за замовчуванням прихована */
   background: transparent;
   border: none;

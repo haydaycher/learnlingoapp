@@ -72,7 +72,7 @@ const CustomSelect = ({ value, onChange, options, isPrice }) => {
 const TeachersPage = () => {
   const [allTeachers, setAllTeachers] = useState([]);
   const [filteredTeachers, setFilteredTeachers] = useState([]);
-  const [itemsToShow, setItemsToShow] = useState(4);
+  const [itemsToShow, setItemsToShow] = useState(3);
 
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
@@ -113,7 +113,7 @@ const TeachersPage = () => {
       filtered = filtered.filter((t) => t.price_per_hour <= maxPrice);
     }
     setFilteredTeachers(filtered);
-    setItemsToShow(4);
+    setItemsToShow(3);
   }, [selectedLanguage, selectedLevel, selectedPrice, allTeachers]);
 
   const isFavorite = (teacher) => {
@@ -143,7 +143,7 @@ const TeachersPage = () => {
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
-  const handleLoadMore = () => setItemsToShow((prev) => prev + 4);
+  const handleLoadMore = () => setItemsToShow((prev) => prev + 3);
 
   const toggleExpand = (index) => {
     setExpandedCards((prev) =>
@@ -271,18 +271,18 @@ const TeachersPage = () => {
                   </div>
                 </div>
 
-                <p>
+                <p className={css.lessonText}>
                   <strong className={css.sectionTitle}>Speaks:</strong>{" "}
                   <span className={css.speaksList}>
                     {teacher.languages.join(", ")}
                   </span>
                 </p>
 
-                <p>
+                <p className={css.lessonText}>
                   <strong className={css.sectionTitle}>Lesson info:</strong>
                   {teacher.lesson_info}
                 </p>
-                <p>
+                <p className={css.lessonText}>
                   <strong className={css.sectionTitle}>Conditions:</strong>
                   {teacher.conditions}
                 </p>

@@ -95,7 +95,7 @@ export const Header = () => {
       </Modal>
 
       <Modal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)}>
-        <SignUpForm />
+        <SignUpForm onClose={() => setIsSignupOpen(false)} />
       </Modal>
 
       <Modal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)}>

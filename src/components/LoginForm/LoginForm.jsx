@@ -22,9 +22,9 @@ export const LoginForm = (onClose) => {
 
   return (
     <form className={css.login_form} onSubmit={handleLogin}>
-      <button type="button" className={css.closeBtn} onClick={onClose}>
+      {/* <button type="button" className={css.closeBtn} onClick={onClose}>
         <img src="/x.svg" alt="close" />
-      </button>
+      </button> */}
       <h1 className={css.login_h}>Log In</h1>
       <p className={css.login_p}>
         Welcome back! Please enter your credentials to access your account and

@@ -18,13 +18,9 @@ export const SignUpForm = ({ onClose }) => {
         email,
         password
       );
-
-      // додаємо displayName
-      await updateProfile(userCredential.user, {
-        displayName: name,
-      });
-
+      await updateProfile(userCredential.user, { displayName: name });
       alert("Registration successful");
+      onClose(); // закриваємо модалку після успішної реєстрації
     } catch (err) {
       alert(err.message);
     }
