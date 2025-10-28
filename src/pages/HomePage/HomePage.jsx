@@ -1,6 +1,5 @@
 import { FaUsers, FaStar, FaBook, FaGlobe, FaLanguage } from "react-icons/fa";
 // іконки з FontAwesome
-import { Header } from "../../components/Header/Header";
 import css from "./HomePage.module.css";
 import { Link } from "react-router-dom";
 import girl1x from "../../assets/girl1x.webp";
@@ -43,7 +42,9 @@ const HomePage = () => {
           </picture>
 
           <Link to="/teachers">
-            <button className={css.home_main_btn}>Get started</button>
+            <button type="button" className={css.home_main_btn}>
+              Get started
+            </button>
           </Link>
           {/* Декоративна іконка */}
           <FaLanguage className={css.decorIcon} />

@@ -88,7 +88,7 @@ export const Header = () => {
       )}
 
       <Modal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)}>
-        <LoginForm />
+        <LoginForm onClose={() => setIsLoginOpen(false)} />
       </Modal>
 
       <Modal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)}>

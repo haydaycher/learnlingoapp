@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import css from "./LoginForm.module.css";
@@ -8,13 +9,14 @@ export const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate(); // ініціалізація навігатора
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Logged in!");
       if (onClose) onClose(); // закриваємо модалку
+      navigate("/"); // відкриваємо головну сторінку
     } catch (err) {
       alert(err.message);
     }

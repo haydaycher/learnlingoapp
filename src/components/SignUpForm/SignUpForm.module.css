@@ -88,11 +88,14 @@ body {
 }
 
 .sign_form_button {
-  font-family: var(--font-asap);
+  font-family: var(--font-family);
+
+  font-size: 18px;
+
+  color: #121417;
+
   cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  text-transform: uppercase;
+
   width: 100%;
   border: 0;
   padding: 10px 0;

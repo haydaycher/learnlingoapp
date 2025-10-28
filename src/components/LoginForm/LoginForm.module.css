@@ -108,26 +108,24 @@ body {
 }
 
 .login_form_button {
-  font-family: var(--font-asap);
+  font-family: var(--font-family);
+
+  font-size: 18px;
+
+  color: #121417;
+
   cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  text-transform: uppercase;
+
   width: 100%;
   border: 0;
   padding: 10px 0;
-  margin-top: 10px;
   margin-left: -5px;
-  border-radius: 5px;
+  border-radius: 12px;
   background-color: #f4c550;
   transition: background-color 300ms;
-  outline: none;
-  border-radius: 12px;
-  font-family: var(--font-family);
   font-weight: 700;
   font-size: 18px;
   line-height: 156%;
-  /* color: #121417; */
   margin-top: 40px;
 }
 
