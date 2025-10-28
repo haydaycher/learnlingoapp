@@ -1,5 +1,6 @@
 // src/components/Header.jsx
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // <-- додали
 import { signOut } from "firebase/auth";
 import Logo from "../Logo/Logo.jsx";
 import { auth } from "../../firebase/config";
@@ -18,8 +19,11 @@ export const Header = () => {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
+  const navigate = useNavigate(); // <-- ініціалізуємо useNavigate
+
   const handleLogout = async () => {
     await signOut(auth);
+    navigate("/"); // <-- після логауту переходимо на домашню
   };
 
   const username =
@@ -27,7 +31,6 @@ export const Header = () => {
 
   return (
     <section className={css.header}>
-      {/* Лівий блок: Логотип + Username */}
       <div className={css.leftBlock}>
         <Logo />
         {currentUser && (
@@ -35,22 +38,18 @@ export const Header = () => {
         )}
       </div>
 
-      {/* Центрований блок навігації */}
       <div className={css.navWrapper}>
         <Navigation />
       </div>
 
-      {/* Правий блок: BurgerMenu або кнопки авторизації */}
-      {/* Правий блок: BurgerMenu або кнопки авторизації */}
       {currentUser ? (
         <BurgerMenu
           currentUser={currentUser}
           onProfileClick={() => setIsProfileOpen(true)}
-          onLogout={handleLogout}
+          onLogout={handleLogout} // <-- логаут + редірект
         />
       ) : (
         <>
-          {/* Мобільна кнопка для логіну */}
           <button
             className={css.mobileLoginBtn}
             onClick={() => setIsLoginOpen(true)}
@@ -64,7 +63,6 @@ export const Header = () => {
             />
           </button>
 
-          {/* Стандартні кнопки (ті, що були у твоєму коді) */}
           <div className={css.authButtons}>
             <button
               className={css.authButtonLog}
@@ -89,7 +87,6 @@ export const Header = () => {
         </>
       )}
 
-      {/* Modals */}
       <Modal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)}>
         <LoginForm />
       </Modal>

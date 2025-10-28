@@ -1,11 +1,10 @@
-// src/components/LoginForm.jsx
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import css from "./LoginForm.module.css";
 import { Eye, EyeOff } from "lucide-react";
 
-export const LoginForm = (onClose) => {
+export const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +14,7 @@ export const LoginForm = (onClose) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("Logged in!");
+      if (onClose) onClose(); // закриваємо модалку
     } catch (err) {
       alert(err.message);
     }
@@ -22,14 +22,12 @@ export const LoginForm = (onClose) => {
 
   return (
     <form className={css.login_form} onSubmit={handleLogin}>
-      {/* <button type="button" className={css.closeBtn} onClick={onClose}>
-        <img src="/x.svg" alt="close" />
-      </button> */}
       <h1 className={css.login_h}>Log In</h1>
       <p className={css.login_p}>
         Welcome back! Please enter your credentials to access your account and
         continue your search for a teacher.
       </p>
+
       <input
         className={css.login_form_input}
         type="email"
@@ -52,6 +50,7 @@ export const LoginForm = (onClose) => {
           type="button"
           className={css.eye_button}
           onClick={() => setShowPassword(!showPassword)}
+          tabIndex={-1}
         >
           {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
         </button>

@@ -9,7 +9,10 @@ body {
   /* background-color: var(--red-fire); */
   font-family: var(--font-asap);
 }
-
+.password_wrapper {
+  position: relative;
+  width: 100%;
+}
 .login_h {
   font-family: var(--font-family);
   font-weight: 500;
@@ -97,10 +100,11 @@ body {
   background: white;
   width: 100%;
   border: 0;
-  padding: 10px 10px;
+  padding: 10px 40px 10px 10px; /* додано padding-right */
   margin: 0 auto;
   margin-top: 10px;
   outline: none;
+  box-sizing: border-box; /* важливо */
 }
 
 .login_form_button {
