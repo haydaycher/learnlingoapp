@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth } from "../../firebase/config";
-import css from "../TeachersPage/TeachersPage.module.css";
+import css from "../FavoritesPage/FavoritesPage.module.css";
 import TrialLessonModal from "../../components/TrialLessonModal/TrialLessonModal";
 import { Modal } from "../../components/Modal/Modal";
 
@@ -51,7 +51,7 @@ const FavoritesPage = () => {
               <div className={css.cardTop}>
                 <div className={css.avatarWrapper}>
                   <div className={css.statusDotWrapper}>
-                    <img src="/online.svg" alt="online" />
+                    {/* <img src="/online.svg" alt="online" width={20} /> */}
                   </div>
                   <div className={css.avatarOuter}>
                     <img

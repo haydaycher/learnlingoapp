@@ -19,9 +19,16 @@ const HomePage = () => {
             Elevate your language proficiency to new heights by connecting with
             highly qualified and experienced tutors.
           </p>
+
+          <Link to="/teachers">
+            <button type="button" className={css.home_main_btn}>
+              Get started
+            </button>
+          </Link>
         </div>
+
         <div className={css.imageWrapper}>
-          <picture>
+          <picture className={css.hero_img}>
             <source
               srcSet={`${girl1x} 1x, ${girl2x} 2x`}
               media="(min-width: 1422px)"
@@ -41,11 +48,6 @@ const HomePage = () => {
             />
           </picture>
 
-          <Link to="/teachers">
-            <button type="button" className={css.home_main_btn}>
-              Get started
-            </button>
-          </Link>
           {/* Декоративна іконка */}
           <FaLanguage className={css.decorIcon} />
         </div>

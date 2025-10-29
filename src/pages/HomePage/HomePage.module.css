@@ -32,14 +32,14 @@
 .hero_img {
   width: 100%;
 
-  object-fit: cover;
+  /* object-fit: cover; */
   border-radius: 20px;
 }
 
 .home_main_btn {
-  position: static;
+  /* position: static; */
   margin: 20px auto 0 auto;
-  display: block;
+
   background: #f4c550;
   border-radius: 12px;
   padding: 12px 40px;
@@ -54,20 +54,24 @@
 }
 
 .home_title {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
   font-size: 24px;
   line-height: 117%;
-  padding: 0;
-  margin-bottom: 16px;
   letter-spacing: -0.02em;
   color: #121417;
-  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+
+  padding: 0;
+  margin-bottom: 16px;
 }
 
 .home_moto {
-  font-size: 14px;
-  text-align: center;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  letter-spacing: -0.02em;
+  color: #121417;
 }
 
 .highlighted {
@@ -83,7 +87,7 @@
   border: 1.5px dashed #f4c550;
   border-radius: 30px;
   width: 100%;
-  margin-top: 30px;
+
   padding: 20px;
 }
 
@@ -158,10 +162,6 @@
     font-size: 16px;
   }
 
-  .hero_img {
-    height: 300px;
-  }
-
   .stats_list {
     flex-direction: row;
     flex-wrap: wrap;
@@ -174,7 +174,7 @@
 }
 
 /* Десктоп (від 1025px і вище) — горизонтально */
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1280px) {
   .home_section {
     flex-direction: row;
     align-items: stretch;
@@ -191,11 +191,11 @@
   }
 
   .home_title {
-    font-size: 33px;
+    font-size: 48px;
   }
 
   .highlighted {
-    font-size: 33px;
+    font-size: 48px;
   }
 
   .home_moto {
@@ -203,17 +203,22 @@
   }
 
   .hero_img {
+    /* width: 339px;
+    height: 339px; */
     height: auto;
   }
 
   .home_main_btn {
-    position: absolute;
+    /* position: absolute;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 50%; */
+
     width: 267px;
     height: 60px;
     padding: 16px 88px;
+
+    margin-right: 62px;
+    margin-top: 24px;
 
     z-index: 2;
   }

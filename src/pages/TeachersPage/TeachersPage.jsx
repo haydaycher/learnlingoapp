@@ -341,7 +341,7 @@ const TeachersPage = () => {
                                       alt="rating"
                                       className={css.starIcon}
                                     />
-                                    {rev.reviewer_rating}
+                                    {parseFloat(rev.reviewer_rating).toFixed(1)}
                                   </span>
                                 </div>
                               </div>
