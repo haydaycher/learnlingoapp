@@ -81,9 +81,12 @@ const FavoritesPage = () => {
                             alt="book-open"
                             className={css.book_open}
                           />
-                          <strong>Lessons done:</strong> {teacher.lessons_done}
+                          <strong>Lessons online</strong>
                         </p>
+                        <span className={css.divider}>|</span>
                         <p>
+                          <strong>Lessons done:</strong> {teacher.lessons_done}
+                          <span className={css.divider}>|</span>
                           <img
                             src="/star-rate.svg"
                             alt="star-rate"
@@ -91,6 +94,7 @@ const FavoritesPage = () => {
                           />
                           <strong>Rating:</strong> {teacher.rating}
                         </p>
+                        <span className={css.divider}>|</span>
                         <p>
                           <strong>Price/1 hour:</strong>{" "}
                           <span className={css.priceValue}>
@@ -118,20 +122,20 @@ const FavoritesPage = () => {
                     </div>
                   </div>
 
-                  <p>
-                    <strong>Speaks:</strong>{" "}
+                  <p className={css.lessonText}>
+                    <strong className={css.sectionTitle}>Speaks:</strong>{" "}
                     <span className={css.speaksList}>
                       {teacher.languages.join(", ")}
                     </span>
                   </p>
 
-                  <p>
+                  <p className={css.lessonText}>
                     <strong className={css.sectionTitle}>Lesson info:</strong>{" "}
                     {teacher.lesson_info}
                   </p>
 
                   {teacher.conditions && (
-                    <p>
+                    <p className={css.lessonText}>
                       <strong className={css.sectionTitle}>Conditions:</strong>{" "}
                       {teacher.conditions}
                     </p>

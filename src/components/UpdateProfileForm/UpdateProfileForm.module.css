@@ -82,16 +82,20 @@
   color: #2b2b2b;
   border: none;
   border-radius: 12px;
-  padding: 0.8rem;
+
   font-size: 1rem;
-  font-weight: 600;
+
   cursor: pointer;
   transition: background-color 0.25s, transform 0.15s;
+
+  margin-top: 1.5rem;
+  padding: 16px 48px;
+  font-weight: 700;
+  line-height: 156%;
 }
 
 .formContainer .submitBtn:hover {
-  background-color: #e6b93e;
-  transform: translateY(-1px);
+  background-color: #ffdc86;
 }
 
 .formContainer p {

@@ -217,16 +217,17 @@
 }
 
 .cardTopRight {
-  align-items: center;
-  gap: 1rem;
-  margin-left: auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .cardStats {
-  align-items: center;
-
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
+
 .reviewTop {
   display: flex;
   gap: 12px;
@@ -259,9 +260,7 @@ p strong.sectionTitle {
 }
 
 .divider {
-  color: rgba(18, 20, 23, 0.2);
-  font-weight: 400;
-  line-height: 1;
+  visibility: hidden;
 }
 
 .cardFav {
@@ -290,8 +289,8 @@ p strong.sectionTitle {
 .cardTopRight .heartBtn {
   display: flex;
 
-  justify-content: flex-end;
-  top: -350px;
+  justify-content: end;
+  /* top: -350px; */
   margin: 0;
 }
 
@@ -527,16 +526,24 @@ p strong.sectionTitle {
 .book_btn {
   border-radius: 12px;
   padding: 16px 48px;
-  /* width: 232px; */
+  width: 232px;
   height: 60px;
   background: #f4c550;
   font-weight: 700;
   line-height: 156%;
   color: #121417;
 }
+.book_btn:hover {
+  background: #ffdc86;
+}
+
 @media screen and (min-width: 768px) {
   .cardTopRight .heartBtn {
-    top: -120px;
+    top: -110px;
+  }
+
+  .divider {
+    visibility: visible;
   }
   .reviewItem {
     display: block;
@@ -586,13 +593,21 @@ p strong.sectionTitle {
   }
 }
 @media screen and (min-width: 1280px) {
+  .divider {
+    color: rgba(18, 20, 23, 0.2);
+    font-weight: 400;
+    line-height: 1;
+  }
   .cardTopRight {
     margin-left: 149px;
     align-items: start;
   }
+  .cardStats {
+    flex-direction: row;
+  }
   .cardTopRight .heartBtn {
     align-items: start;
-    top: 0;
+    top: -15px;
   }
   .cardHeader {
     display: flex;
