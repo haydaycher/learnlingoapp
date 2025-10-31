@@ -22,24 +22,30 @@
 }
 
 .imageWrapper {
-  background: #fbe9ba;
   position: relative;
-  border-radius: 30px;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #fbe9ba;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
 }
-
 .hero_img {
-  width: 339px;
-  height: 339px;
-
-  /* object-fit: cover; */
-  border-radius: 20px;
+  width: 245px;
+  height: auto;
+}
+/* mac поверх */
+.mac_img {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: auto;
+  z-index: 2;
 }
 
 .home_main_btn {
@@ -125,7 +131,7 @@
   margin-right: 12px;
 }
 
-.decorIcon {
+/* .decorIcon {
   position: absolute;
   top: 10px;
   left: 20px;
@@ -138,6 +144,27 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   opacity: 0.8;
   pointer-events: none;
+} */
+.decorIcon {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 48px;
+  color: #f4b400;
+  opacity: 0.8;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
 /* Планшети (від 768px і вище) */
@@ -158,6 +185,8 @@
   }
 
   .decorIcon {
+    width: 70px;
+    height: 70px;
     top: 40px;
     left: 60px;
   }
@@ -169,6 +198,14 @@
   .home_moto {
     font-size: 16px;
   }
+  .hero_img {
+    width: 260px;
+  }
+  /* Language learning illustration — по центру */
+  .mac_img {
+    visibility: visible;
+    width: 245px;
+  }
 
   .stats_list {
     flex-direction: row;
@@ -178,6 +215,9 @@
 
   .home_icon {
     font-size: 32px;
+  }
+  .imageWrapper {
+    padding: 60px 80px;
   }
 }
 
@@ -217,12 +257,6 @@
     font-size: 17px;
   }
 
-  .hero_img {
-    /* width: 339px;
-    height: 339px; */
-    height: auto;
-  }
-
   .home_main_btn {
     /* position: absolute;
     bottom: 20px;
@@ -242,12 +276,29 @@
     position: absolute;
     top: 85px;
     left: 25px;
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     font-size: 40px;
+  }
+
+  /* Language learning illustration — по центру */
+  .hero_img {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
+    height: auto;
+    z-index: 1;
+  }
+  .mac_img {
+    width: 360px;
   }
 
   .stats_list {
     justify-content: center;
+  }
+  .imageWrapper {
+    padding: 80px 114px;
   }
 }

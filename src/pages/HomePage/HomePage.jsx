@@ -1,9 +1,10 @@
 import { FaUsers, FaStar, FaBook, FaGlobe, FaLanguage } from "react-icons/fa";
-// іконки з FontAwesome
 import css from "./HomePage.module.css";
 import { Link } from "react-router-dom";
 import girl1x from "../../assets/girl1x.webp";
 import girl2x from "../../assets/girl2x.webp";
+import mac1x from "../../assets/mac1x.webp";
+import mac2x from "../../assets/mac2x.webp";
 
 const HomePage = () => {
   return (
@@ -28,7 +29,8 @@ const HomePage = () => {
         </div>
 
         <div className={css.imageWrapper}>
-          <picture className={css.hero_img}>
+          {/* Language learning illustration */}
+          <picture>
             <source
               srcSet={`${girl1x} 1x, ${girl2x} 2x`}
               media="(min-width: 1422px)"
@@ -48,7 +50,19 @@ const HomePage = () => {
             />
           </picture>
 
-          {/* Декоративна іконка */}
+          {/* Mac illustration */}
+          <picture>
+            <source srcSet={`${mac1x} 1x, ${mac2x} 2x`} type="image/webp" />
+            <img
+              src={mac1x}
+              srcSet={`${mac1x} 1x, ${mac2x} 2x`}
+              alt="Laptop illustration"
+              className={css.mac_img}
+              loading="lazy"
+            />
+          </picture>
+
+          {/* Decorative icon */}
           <FaLanguage className={css.decorIcon} />
         </div>
       </div>

@@ -52,12 +52,12 @@ p strong.sectionTitle {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease;
+  transition: box-shadow 0.3s ease;
   width: 100%;
 }
 
 .teacherCard:hover {
-  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .cardTop {
