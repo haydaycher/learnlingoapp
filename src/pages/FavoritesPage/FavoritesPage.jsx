@@ -84,16 +84,14 @@ const FavoritesPage = () => {
                           <strong>Lessons online</strong>
                         </p>
                         <span className={css.divider}>|</span>
-                        <p>
-                          <strong>Lessons done:</strong> {teacher.lessons_done}
-                          <span className={css.divider}>|</span>
-                          <img
-                            src="/star-rate.svg"
-                            alt="star-rate"
-                            className={css.book_open}
-                          />
-                          <strong>Rating:</strong> {teacher.rating}
-                        </p>
+                        <strong>Lessons done:</strong> {teacher.lessons_done}
+                        <span className={css.divider}>|</span>
+                        <img
+                          src="/star-rate.svg"
+                          alt="star-rate"
+                          className={css.book_open}
+                        />
+                        <strong>Rating:</strong> {teacher.rating}
                         <span className={css.divider}>|</span>
                         <p>
                           <strong>Price/1 hour:</strong>{" "}
