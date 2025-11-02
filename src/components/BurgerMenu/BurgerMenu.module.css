@@ -1,6 +1,6 @@
 .navigationBlock {
   position: relative;
-  top: -45px;
+  top: -25px;
   right: -45px;
   z-index: 10;
 }
@@ -10,8 +10,8 @@
 .hamburgerMenu {
   width: 30px;
   height: 30px;
-  position: absolute;
-  top: 27px;
+  position: relative;
+  top: 10px;
   right: 45px;
   display: flex;
   align-items: center;
@@ -52,17 +52,29 @@
 /* випадаюче меню */
 .menuList {
   position: absolute;
-  top: 45px; /* нижче бургер-іконки */
-  right: 60px;
-  /* background: rgba(255, 255, 255, 0.95);
+  top: 5%; /* трохи нижче бургер-іконки */
+  right: 0; /* прилипає до правого краю бургер-меню */
+  min-width: 240px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.25s ease forwards;
+  z-index: 15;
+}
+
+/* .menuList {
+  position: absolute;
+  top: 45px; нижче бургер-іконки */
+/* right: 60px; */
+/* background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); */
-  overflow: hidden;
+/* overflow: hidden;
   opacity: 0;
   transform: translateY(-10px);
   animation: slideDown 0.3s ease forwards;
-  z-index: 30;
-}
+  z-index: 30; */
+/* } */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -77,7 +89,7 @@
 .menuList ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 50px 0;
 }
 
 .link {
@@ -111,6 +123,15 @@
 /* фон позаду меню */
 /* фон позаду меню з анімацією як у модалки */
 .menuBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 5;
+}
+/* .menuBackground {
   position: absolute;
   top: 0;
   right: 0;
@@ -123,7 +144,7 @@
   animation: fadeInBg 0.35s ease forwards;
   box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.6),
     inset 0 -6px 12px rgba(0, 0, 0, 0.15);
-}
+} */
 @keyframes fadeInBg {
   from {
     opacity: 0;
@@ -170,7 +191,6 @@
 
 @media screen and (min-width: 768px) {
   .hamburgerMenu {
-    top: 30px;
     right: 30px;
   }
   .navigationBlock {
@@ -188,7 +208,10 @@
     right: -25px;
   }
   .hamburgerMenu {
-    top: 40px;
+    top: 30px;
     right: 40px;
+  }
+  .menuList {
+    transform: translateX(calc(-100% + 30px)); /* вирівнює під бургером */
   }
 }

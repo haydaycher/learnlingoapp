@@ -47,6 +47,28 @@ body {
   z-index: 10;
 }
 
+.switch_text {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(18, 20, 23, 0.7);
+  margin-top: 20px;
+}
+
+.switch_link {
+  background: none;
+  border: none;
+  color: #028090;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.switch_link:hover {
+  color: #046c77;
+}
+
+
 .closeBtn:hover {
   background: rgba(0, 0, 0, 0.1);
 }

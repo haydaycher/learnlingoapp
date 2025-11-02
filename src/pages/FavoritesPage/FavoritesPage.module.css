@@ -161,7 +161,6 @@ p strong.sectionTitle {
 .cardStats {
   display: flex;
   flex-direction: column;
-  gap: 6px;
 }
 
 .cardStats p {
@@ -260,10 +259,7 @@ p strong.sectionTitle {
     justify-content: space-between;
   }
   .divider {
-    visibility: visible;
-    color: rgba(18, 20, 23, 0.2);
-    font-weight: 400;
-    line-height: 1;
+    visibility: hidden;
   }
   .cardHeader {
     display: flex;
@@ -281,7 +277,6 @@ p strong.sectionTitle {
 
   .cardStats {
     flex-direction: row;
-    gap: 1rem;
   }
 }
 
@@ -294,7 +289,17 @@ p strong.sectionTitle {
     margin-top: 24px;
   }
 
+  .cardStats {
+    gap: 6px;
+  }
+
   .cardInfo {
     width: 968px;
+  }
+  .divider {
+    visibility: visible;
+    color: rgba(18, 20, 23, 0.2);
+    font-weight: 400;
+    line-height: 1;
   }
 }

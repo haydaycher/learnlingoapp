@@ -4,7 +4,7 @@ import { auth } from "../../firebase/config";
 import css from "./SignUpForm.module.css";
 import { Eye, EyeOff } from "lucide-react";
 
-export const SignUpForm = ({ onClose }) => {
+export const SignUpForm = ({ onClose, onSwitchForm }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +20,7 @@ export const SignUpForm = ({ onClose }) => {
       );
       await updateProfile(userCredential.user, { displayName: name });
       alert("Registration successful");
-      onClose(); // закриваємо модалку після успішної реєстрації
+      onClose();
     } catch (err) {
       alert(err.message);
     }
@@ -34,7 +34,7 @@ export const SignUpForm = ({ onClose }) => {
       <h1 className={css.sign_h}>Registration</h1>
       <p className={css.sign_p}>
         Thank you for your interest in our platform! In order to register, we
-        need some information. Please provide us with the following information
+        need some information. Please provide us with the following information.
       </p>
 
       <input
@@ -76,6 +76,17 @@ export const SignUpForm = ({ onClose }) => {
       <button className={css.sign_form_button} type="submit">
         Sign Up
       </button>
+
+      <p className={css.switch_text}>
+        Already have an account?{" "}
+        <button
+          type="button"
+          className={css.switch_link}
+          onClick={onSwitchForm}
+        >
+          Log In
+        </button>
+      </p>
     </form>
   );
 };

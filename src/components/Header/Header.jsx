@@ -1,6 +1,6 @@
 // src/components/Header.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // <-- додали
+import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import Logo from "../Logo/Logo.jsx";
 import { auth } from "../../firebase/config";
@@ -15,15 +15,15 @@ import css from "./Header.module.css";
 
 export const Header = () => {
   const { currentUser } = useAuth();
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  const navigate = useNavigate(); // <-- ініціалізуємо useNavigate
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     await signOut(auth);
-    navigate("/"); // <-- після логауту переходимо на домашню
+    navigate("/");
   };
 
   const username =
@@ -46,13 +46,16 @@ export const Header = () => {
         <BurgerMenu
           currentUser={currentUser}
           onProfileClick={() => setIsProfileOpen(true)}
-          onLogout={handleLogout} // <-- логаут + редірект
+          onLogout={handleLogout}
         />
       ) : (
         <>
           <button
             className={css.mobileLoginBtn}
-            onClick={() => setIsLoginOpen(true)}
+            onClick={() => {
+              setIsLoginMode(true);
+              setAuthModalOpen(true);
+            }}
           >
             <img
               src="/log-in-enter.svg"
@@ -66,7 +69,10 @@ export const Header = () => {
           <div className={css.authButtons}>
             <button
               className={css.authButtonLog}
-              onClick={() => setIsLoginOpen(true)}
+              onClick={() => {
+                setIsLoginMode(true);
+                setAuthModalOpen(true);
+              }}
             >
               <img
                 src="/log-in-enter.svg"
@@ -79,7 +85,10 @@ export const Header = () => {
             </button>
             <button
               className={css.authButtonReg}
-              onClick={() => setIsSignupOpen(true)}
+              onClick={() => {
+                setIsLoginMode(false);
+                setAuthModalOpen(true);
+              }}
             >
               Registration
             </button>
@@ -87,12 +96,19 @@ export const Header = () => {
         </>
       )}
 
-      <Modal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)}>
-        <LoginForm onClose={() => setIsLoginOpen(false)} />
-      </Modal>
-
-      <Modal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)}>
-        <SignUpForm onClose={() => setIsSignupOpen(false)} />
+      {/* Єдина модалка для логіну і реєстрації */}
+      <Modal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)}>
+        {isLoginMode ? (
+          <LoginForm
+            onClose={() => setAuthModalOpen(false)}
+            onSwitchForm={() => setIsLoginMode(false)} // Перемикає на Sign Up
+          />
+        ) : (
+          <SignUpForm
+            onClose={() => setAuthModalOpen(false)}
+            onSwitchForm={() => setIsLoginMode(true)} // Перемикає на Log In
+          />
+        )}
       </Modal>
 
       <Modal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)}>

@@ -5,18 +5,18 @@ import { auth } from "../../firebase/config";
 import css from "./LoginForm.module.css";
 import { Eye, EyeOff } from "lucide-react";
 
-export const LoginForm = ({ onClose }) => {
+export const LoginForm = ({ onClose, onSwitchForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate(); // ініціалізація навігатора
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      if (onClose) onClose(); // закриваємо модалку
-      navigate("/"); // відкриваємо головну сторінку
+      if (onClose) onClose();
+      navigate("/");
     } catch (err) {
       alert(err.message);
     }
@@ -61,6 +61,17 @@ export const LoginForm = ({ onClose }) => {
       <button className={css.login_form_button} type="submit">
         Log In
       </button>
+
+      <p className={css.switch_text}>
+        Don’t have an account?{" "}
+        <button
+          type="button"
+          className={css.switch_link}
+          onClick={onSwitchForm}
+        >
+          Sign Up
+        </button>
+      </p>
     </form>
   );
 };
