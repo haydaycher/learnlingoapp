@@ -100,6 +100,7 @@
   margin-top: 0;
 }
 .nameBlock {
+  position: relative;
   display: flex;
   margin-bottom: 15px;
   flex-direction: column;
@@ -203,30 +204,33 @@
 }
 
 .cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 18px;
-  position: relative;
 }
 
 .cardInfo {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: relative;
+  min-width: 0; /* щоб текст переносився всередині */
+  overflow-wrap: break-word;
 }
 
 .cardTopRight {
   display: flex;
-  flex-direction: column-reverse; /* вертикально */
+  flex-direction: column-reverse;
   align-items: flex-start;
-  justify-content: flex-start;
   gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .cardStats {
   display: flex;
   flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
 }
 
 .reviewTop {
@@ -280,19 +284,6 @@ p strong.sectionTitle {
   line-height: 150%;
   color: #8a8a89;
   margin-bottom: 8px; /* ✅ додає саме цей відступ */
-}
-
-/* .cardTopRight p {
-  margin: 0;
-  font-weight: 500;
-} */
-
-.cardTopRight .heartBtn {
-  display: flex;
-
-  justify-content: end;
-  /* top: -350px; */
-  margin: 0;
 }
 
 .cardActions {
@@ -375,10 +366,6 @@ p strong.sectionTitle {
   color: #222;
 }
 
-.cardExtra li {
-  margin-bottom: 0.3rem;
-}
-
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -420,12 +407,17 @@ p strong.sectionTitle {
 }
 
 .heartBtn {
+  position: relative;
+  top: 0;
+  right: 0;
   font-size: 1.5rem;
   margin-top: 0.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
-  position: relative;
+  padding: 0;
+  margin: 0;
+  align-self: flex-start;
   transition: transform 0.2s ease;
 }
 
@@ -446,6 +438,7 @@ p strong.sectionTitle {
 
 .reviewItem {
   display: flex;
+  flex-direction: column;
   gap: 16px;
   margin-bottom: 24px;
   align-items: flex-start;
@@ -527,8 +520,8 @@ p strong.sectionTitle {
 .book_btn {
   border-radius: 12px;
   padding: 16px 48px;
-  width: 232px;
-  height: 60px;
+  /* width: 232px;
+  height: 60px; */
   background: #f4c550;
   font-weight: 700;
   line-height: 156%;
@@ -540,18 +533,17 @@ p strong.sectionTitle {
 
 @media screen and (min-width: 768px) {
   .heartBtn {
-    top: -110px;
+    align-self: flex-start;
+    position: static;
+    transform: none;
   }
-
   .divider {
     visibility: hidden;
   }
   .reviewItem {
     display: block;
   }
-  .nameBlock {
-    margin-bottom: 32px;
-  }
+
   .cardExtra {
     margin-top: 16px;
   }
@@ -569,9 +561,8 @@ p strong.sectionTitle {
   }
 
   .cardTopRight {
-    flex-direction: row; /* горизонтально на більших екранах */
-    align-items: center;
     justify-content: space-between;
+
     gap: 16px;
   }
   .teacherList {
@@ -591,9 +582,12 @@ p strong.sectionTitle {
     align-items: center;
     gap: 1.5rem;
   }
+
   .cardStats {
-    display: flex;
-    /* gap: 0.8rem; */
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-auto-rows: min-content;
+    gap: 8px 24px;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -603,13 +597,16 @@ p strong.sectionTitle {
     font-weight: 400;
     line-height: 1;
   }
-  /* .cardTopRight { */
-  /* margin-left: 149px; */
-  /* align-items: start; */
-  /* } */
-  .cardStats {
+  .cardTopRight {
+    justify-content: flex-end;
     flex-direction: row;
-    gap: 6px;
+    gap: 24px;
+  }
+  .cardStats {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
   }
   .heartBtn {
     align-items: start;
@@ -617,6 +614,8 @@ p strong.sectionTitle {
   }
   .cardHeader {
     display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
   .teacherList {
     display: inline-flex;
@@ -632,6 +631,10 @@ p strong.sectionTitle {
     margin: 0 auto;
   }
 
+  .teacherCard {
+    width: 1184px;
+  }
+
   .teacherCard p {
     margin: 0.2rem 0;
   }
@@ -641,5 +644,10 @@ p strong.sectionTitle {
   .cardInfo {
     width: 968px;
     /* margin-left: 24px; */
+  }
+
+  .heartBtn img {
+    width: 28px;
+    height: 28px;
   }
 }
