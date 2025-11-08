@@ -1,5 +1,4 @@
-.teachersSection,
-.favoritesSection {
+.teachersSection {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -213,7 +212,7 @@
 
 .cardInfo {
   flex: 1;
-  min-width: 0; /* щоб текст переносився всередині */
+  min-width: 0;
   overflow-wrap: break-word;
 }
 
@@ -229,7 +228,6 @@
 .cardStats {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   align-items: flex-start;
 }
 
@@ -245,7 +243,6 @@
   color: #121417;
   display: flex;
   align-items: center;
-  gap: 4px;
 }
 p {
   font-family: var(--font-family);

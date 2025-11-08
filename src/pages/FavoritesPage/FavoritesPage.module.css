@@ -1,40 +1,118 @@
+.teachersSection,
 .favoritesSection {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
   margin-top: 15px;
-  padding: 2rem;
 }
-
-.divider {
-  visibility: hidden;
-}
-
 .lessonText {
   font-size: 16px;
   line-height: 1.5;
   color: #121417;
   font-weight: 600;
-  margin: 0;
-}
-p strong.sectionTitle {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
-
-  color: #8a8a89;
 }
 
-.noFavorites {
+.filters {
+  display: flex;
+  gap: 1rem;
+
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.filters p {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.customSelectWrapper {
+  position: relative;
+}
+
+.customSelectDisplay {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  padding: 14px 18px;
+  border-radius: 14px;
+  cursor: pointer;
   font-family: var(--font-family);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 18px;
-  line-height: 150%;
+  line-height: 111%;
+  color: #121417;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customSelectOptions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 4px 0 0 0;
+  padding: 0;
+  border-radius: 12px;
   color: #8a8a89;
-  text-align: center;
-  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.customSelectOptions li {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.customSelectOptions li:hover {
+  background: #f4f4f4;
+}
+.customSelectOptions li.activeOption {
+  color: #121417;
+  font-weight: 500; /* опційно, щоб було більш помітно */
+}
+
+.chevron {
+  margin-left: 8px;
+}
+.dollarSign {
+  margin-left: 4px; /* відступ між цифрою і знаком $ */
+  font-weight: 500;
+}
+
+.filterBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.teachersPage_p {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #8a8a89;
+  margin-top: 0;
+}
+.nameBlock {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.teacherName {
+  /* margin-top: 8px; */
+  margin-bottom: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #121417;
 }
 
 .teacherList {
@@ -42,48 +120,37 @@ p strong.sectionTitle {
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
-  /* margin: 0; */
+  margin: 0;
 }
 
 .teacherCard {
   background: #fff;
   border-radius: 24px;
   padding: 24px;
+
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.3s ease;
+  text-align: start;
+  transition: transform 0.3s ease;
   width: 100%;
 }
 
-.teacherCard:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.cardTop {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: relative;
+.avatarContainer {
+  position: relative; /* точка буде відносно аватара */
+  display: inline-block;
 }
 
 .avatarWrapper {
-  position: relative;
   display: inline-block;
-  width: 120px;
-  height: 120px;
 }
 
-.avatarOuter {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120px;
+.avatarWithOuter {
+  position: relative;
+  display: inline-block;
+  width: 120px; /* під розмір outer */
   height: 120px;
-  border-radius: 50%;
-  border: 3px solid #fbe9ba;
-  box-sizing: border-box;
-  z-index: 1;
 }
 
 .teacherAvatar {
@@ -95,14 +162,19 @@ p strong.sectionTitle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 2; /* поверх outer, під статус-дотом */
 }
-.cardTopRight,
-.heartBtn {
-  display: flex;
-  justify-content: end;
-  /* top: -350px; */
-  margin: 0;
+
+.avatarOuter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #fbe9ba;
+  box-sizing: border-box;
+  z-index: 1; /* під аватаркою */
 }
 
 .statusDotWrapper {
@@ -114,85 +186,236 @@ p strong.sectionTitle {
   border-radius: 50%;
   background-color: #38cd3e;
   border: 2px solid #fff;
-  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3; /* поверх аватарки */
+}
+
+.statusDotWrapper img {
+  width: 100%;
+  height: 100%;
+}
+
+.cardHeader {
+  align-items: start;
+
+  width: 100%;
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 18px;
 }
 
 .cardInfo {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.cardHeader {
-  /* display: flex; */
-  justify-content: space-between;
-  width: 100%;
-}
-
-.nameBlock {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 15px;
-}
-
-.languages_p {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  color: #8a8a89;
-  margin-bottom: 8px;
-  margin-top: 0;
-}
-
-.teacherName {
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: #121417;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .cardTopRight {
+  display: flex;
+  flex-direction: column-reverse;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .cardStats {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+
+.reviewTop {
+  display: flex;
+  gap: 12px;
 }
 
 .cardStats p {
+  margin: 0;
   font-weight: 500;
   font-size: 14px;
   color: #121417;
-  margin: 0;
   display: flex;
   align-items: center;
-  gap: 4px;
+}
+p {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
 }
 
-.book_open {
-  width: 16px;
-  height: 16px;
+p strong.sectionTitle {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+
+  color: #8a8a89;
 }
 
-.priceValue {
-  color: #38cd3e;
-  font-weight: 600;
+.divider {
+  visibility: hidden;
 }
 
 .cardFav {
   display: flex;
   align-items: start;
-  justify-content: end;
+  /* justify-content: center; */
+}
+.priceValue {
+  color: #38cd3e; /* яскраво-зелений колір, можна змінити під свій дизайн */
+  font-weight: 500; /* опційно, щоб цифра виділялась */
+}
+.languages_p {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+  margin-bottom: 8px; /* ✅ додає саме цей відступ */
+}
+
+.cardActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 8px;
+}
+.book_open {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+.speaksList {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: #121417;
+}
+.sectionTitle {
+  text-underline-offset: 3px;
+  color: #8a8a89;
+}
+
+.readMoreLink {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: underline;
+  color: #121417;
+  cursor: pointer;
+}
+
+.levelList {
+  list-style: none;
+  padding: 0;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  /* margin: 8px 0 16px; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.levelItem {
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  border-radius: 35px;
+  padding: 8px 12px;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 114%;
+  color: #121417;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.activeLevel {
+  background: #f4c550;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 114%;
+  color: #121417;
+}
+
+.cardExtra {
+  margin-bottom: 32px;
+  font-size: 0.9rem;
+  color: #333;
+  /* border-top: 1px solid #eee; */
+
+  animation: fadeUp 0.3s ease;
+}
+
+.cardExtra h4 {
+  margin: 0.4rem 0;
+  font-weight: 600;
+  color: #222;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.teacherCard h2 {
+  margin: 0.3rem 0;
+  font-size: 1.2rem;
+  text-align: start;
+}
+
+.teacherCard p {
+  font-size: 0.9rem;
+  text-align: start;
+  margin: 0 0 8px 0;
+}
+
+.loadMoreBtn {
+  margin-top: 1.5rem;
+  padding: 16px 48px;
+  font-weight: 700;
+  line-height: 156%;
+  color: #121417;
+  background: #f4c550;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.loadMoreBtn:hover {
+  background: #ffdc86;
 }
 
 .heartBtn {
+  position: relative;
+  top: 0;
+  right: 0;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
+  align-self: flex-start;
   transition: transform 0.2s ease;
 }
 
@@ -202,104 +425,227 @@ p strong.sectionTitle {
 }
 
 .heartBtn:active {
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
 
-.speaksList {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  color: #121417;
+.reviewContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.sectionTitle {
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.reviewAvatarWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.reviewAvatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.reviewAvatarFallback {
+  width: 100%;
+  height: 100%;
+  background-color: #b0c4de;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-transform: uppercase;
+}
+
+.reviewHeaderWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.reviewHeader {
+  align-items: center;
+  gap: 12px;
+}
+
+.reviewName {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
   color: #8a8a89;
 }
 
-.levelList {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 16px 0 24px 0;
-}
-
-.levelItem {
-  border: 1px solid rgba(18, 20, 23, 0.2);
-  border-radius: 35px;
-  padding: 8px 12px;
+.reviewerRating {
+  font-family: var(--font-family);
   font-weight: 500;
   font-size: 14px;
+  line-height: 129%;
+  color: #121417;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.starIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.reviewComment {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
   color: #121417;
 }
 
 .book_btn {
+  border-radius: 12px;
   padding: 16px 48px;
+  /* width: 232px;
+  height: 60px; */
+  background: #f4c550;
   font-weight: 700;
   line-height: 156%;
   color: #121417;
-  background: #f4c550;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  width: 232px;
-  height: 60px;
-  transition: background 0.3s;
 }
-
 .book_btn:hover {
   background: #ffdc86;
 }
 
-/* --- адаптив --- */
 @media screen and (min-width: 768px) {
+  .heartBtn {
+    align-self: flex-start;
+    position: static;
+    transform: none;
+  }
+  .divider {
+    visibility: hidden;
+  }
+  .reviewItem {
+    display: block;
+  }
+
+  .cardExtra {
+    margin-top: 16px;
+  }
+  .teachersSection,
+  .favoritesSection {
+    margin: 0;
+    padding: 2rem;
+  }
+  .filters {
+    margin-bottom: 24px;
+  }
+  .cardTop {
+    display: flex;
+    gap: 48px;
+  }
+
+  .cardTopRight {
+    justify-content: space-between;
+
+    gap: 16px;
+  }
+  .teacherList {
+    gap: 2rem;
+  }
   .teacherCard {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
-  .divider {
-    visibility: hidden;
-  }
-  .cardHeader {
-    display: flex;
-  }
-
-  .cardTop {
+  /* .cardInfo {
+  
+    margin-left: 24px;
+  } */
+  .cardActions {
     flex-direction: row;
-    gap: 48px;
-  }
-
-  .cardTopRight {
-    margin-left: auto;
-    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   .cardStats {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-auto-rows: min-content;
+    gap: 8px 24px;
   }
 }
-
 @media screen and (min-width: 1280px) {
-  .teacherList {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin-top: 24px;
-  }
-
-  .cardStats {
-    gap: 6px;
-  }
-
-  .cardInfo {
-    width: 968px;
-  }
   .divider {
     visibility: visible;
     color: rgba(18, 20, 23, 0.2);
     font-weight: 400;
     line-height: 1;
+  }
+  .cardTopRight {
+    justify-content: flex-end;
+    flex-direction: row;
+    gap: 24px;
+  }
+  .cardStats {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+  }
+  .heartBtn {
+    align-items: start;
+    top: -15px;
+  }
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .teacherList {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+  }
+  .filters {
+    margin-bottom: 32px;
+  }
+  .loadMoreBtn {
+    width: 183px;
+    margin: 0 auto;
+  }
+
+  .teacherCard {
+    width: 1184px;
+  }
+
+  .teacherCard p {
+    margin: 0.2rem 0;
+  }
+  /* .cardTop {
+    width: 968px;
+  } */
+  .cardInfo {
+    width: 968px;
+    /* margin-left: 24px; */
+  }
+
+  .heartBtn img {
+    width: 28px;
+    height: 28px;
   }
 }
